@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dmsc-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="50%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="40" cy="40" r="1.5" fill="rgba(255,255,255,0.12)"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="400" fill="url(#dmsc-bg)"/>
+  <rect width="800" height="400" fill="url(#grid-pattern)"/>
+
+  <!-- Glowing Light Halos -->
+  <circle cx="640" cy="180" r="180" fill="#38bdf8" opacity="0.22" filter="blur(40px)"/>
+  <circle cx="200" cy="140" r="150" fill="#6366f1" opacity="0.2" filter="blur(40px)"/>
+
+  <!-- Coordinate Waves (Sine & Cosine waves) -->
+  <path d="M 0 260 Q 150 140 300 260 T 600 260 T 800 260" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.75"/>
+  <path d="M 0 260 Q 150 380 300 260 T 600 260 T 800 260" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,6" opacity="0.5"/>
+
+  <!-- Large Stylized Atom & Orbital Shells (Right side) -->
+  <g transform="translate(630, 170)">
+    <!-- Central Nucleus -->
+    <circle cx="0" cy="0" r="22" fill="url(#gold-grad)"/>
+    <circle cx="0" cy="0" r="32" fill="none" stroke="#fef08a" stroke-width="1.5" opacity="0.5"/>
+    <!-- Orbital Rings -->
+    <ellipse cx="0" cy="0" rx="125" ry="45" fill="none" stroke="#38bdf8" stroke-width="2.5" transform="rotate(35)" opacity="0.85"/>
+    <ellipse cx="0" cy="0" rx="125" ry="45" fill="none" stroke="#60a5fa" stroke-width="2.5" transform="rotate(-35)" opacity="0.85"/>
+    <ellipse cx="0" cy="0" rx="125" ry="45" fill="none" stroke="#a78bfa" stroke-width="2.5" transform="rotate(90)" opacity="0.85"/>
+    <!-- Orbiting Electrons -->
+    <circle cx="102" cy="71" r="7" fill="#38bdf8" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="-88" cy="71" r="6" fill="#facc15" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="0" cy="-125" r="7" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="-102" cy="-71" r="5" fill="#34d399" stroke="#fff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Geometric Drafting Triangle & Compass (Center) -->
+  <g transform="translate(280, 140)" stroke="#93c5fd" stroke-width="2.5" fill="none">
+    <!-- Triangle -->
+    <polygon points="0,90 140,90 70,-20" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" fill="rgba(56,189,248,0.12)"/>
+    <circle cx="70" cy="-20" r="4" fill="#38bdf8"/>
+    <circle cx="0" cy="90" r="4" fill="#38bdf8"/>
+    <circle cx="140" cy="90" r="4" fill="#38bdf8"/>
+    <path d="M 25 90 A 25 25 0 0 0 52 62" stroke="#f59e0b" stroke-width="2.5"/>
+    <text x="40" y="82" fill="#fbbf24" font-family="sans-serif" font-size="14" font-weight="bold" stroke="none">θ</text>
+  </g>
+
+  <!-- Floating Mathematical & Science Symbols -->
+  <g font-family="Cambria Math, serif, monospace" font-weight="bold" opacity="0.75">
+    <text x="70" y="100" font-size="34" fill="#bae6fd">∫ f(x)dx</text>
+    <text x="80" y="170" font-size="30" fill="#fef08a">E = mc²</text>
+    <text x="210" y="90" font-size="28" fill="#7dd3fc">π ≈ 3.14159</text>
+    <text x="460" y="100" font-size="36" fill="#67e8f9">∑</text>
+    <text x="480" y="240" font-size="30" fill="#c4b5fd">lim Δx→0</text>
+    <text x="360" y="270" font-size="26" fill="#93c5fd">∇²ψ = 0</text>
+    <text x="140" y="240" font-size="32" fill="#fde047">∞</text>
+  </g>
+</svg>
