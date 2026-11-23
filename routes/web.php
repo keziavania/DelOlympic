@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -32,10 +33,11 @@ Route::middleware('guest')->group(function () {
     // Proses login (POST)
     Route::post('/masuk', [AuthController::class, 'login'])->name('login.post');
 
-    // Placeholder untuk halaman daftar (akan dibuat teman kamu)
-    Route::get('/daftar', function () {
-        return view('auth.register');
-    })->name('register');
+    // Halaman pendaftaran akun (GET)
+    Route::get('/daftar', [RegisterController::class, 'showRegister'])->name('register');
+
+    // Proses pendaftaran akun (POST)
+    Route::post('/daftar', [RegisterController::class, 'register'])->name('register.post');
 });
 
 // Logout (harus sudah login)
