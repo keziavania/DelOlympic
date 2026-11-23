@@ -103,7 +103,7 @@
 
                     <!-- TOMBOL MASUK DENGAN IKON PINTU / LOGIN (PERSIS GAMBAR 3) -->
                     <div class="flex items-center">
-                        <a href="#masuk" onclick="openLoginNotice(event)" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-2 group">
+                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-2 group">
                             <!-- Icon Log In (Right arrow into bracket / door) -->
                             <svg class="w-4 h-4 text-slate-200 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
