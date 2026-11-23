@@ -197,12 +197,6 @@
 
                 {{-- KARTU 2: PENYELENGGARA (Dengan aksen border tegas sesuai gambar referensi) --}}
                 <div class="role-card bg-white rounded-3xl p-8 sm:p-10 border-2 border-blue-600 shadow-sm flex flex-col justify-between text-center relative overflow-hidden group">
-                    
-                    {{-- Badge penanda rekomendasi panitia --}}
-                    <div class="absolute top-4 right-4 bg-blue-50 text-blue-700 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-100">
-                        Panitia
-                    </div>
-
                     <div class="flex flex-col items-center">
                         {{-- Icon Penyelenggara --}}
                         <div class="w-20 h-20 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -394,7 +388,7 @@
                     <div id="role-info-penyelenggara" class="{{ $activeRole === 'penyelenggara' ? 'block' : 'hidden' }} mb-5 p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl text-xs text-indigo-800">
                         <div class="flex items-center gap-2 font-semibold">
                             <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
-                            <span>Mendaftar sebagai Panitia / Penyelenggara</span>
+                            <span>Mendaftar sebagai Penyelenggara</span>
                         </div>
                         <p class="mt-1 text-indigo-700/80 leading-relaxed">
                             Akun ini memiliki hak akses untuk mempublikasikan kompetisi baru dan memvalidasi peserta.
