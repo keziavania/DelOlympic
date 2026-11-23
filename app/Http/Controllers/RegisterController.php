@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'password.min'               => 'Kata sandi minimal 6 karakter.',
             'password.confirmed'         => 'Konfirmasi kata sandi tidak cocok.',
             'phone.required'             => 'Nomor telepon / WhatsApp aktif wajib diisi.',
-            'school_name.required'       => 'Asal sekolah / madrasah wajib diisi.',
+            'school_name.required'       => 'Asal sekolah wajib diisi.',
             'education_level.required'   => 'Jenjang pendidikan wajib dipilih.',
             'institution_name.required'  => 'Nama lembaga / institusi penyelenggara wajib diisi.',
             'institution_type.required'  => 'Jenis lembaga wajib dipilih.',

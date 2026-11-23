@@ -256,64 +256,61 @@
     {{-- ========================================================================= --}}
     <div id="view-registration-form" class="{{ $showFormInitially ? 'flex' : 'hidden' }} min-h-screen relative">
         
-        {{-- Tombol Kembali di Pojok Atas Kiri (Kembali ke Pemilihan Peran) --}}
-        <button type="button"
-                onclick="showRoleSelection()"
-                class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/95 hover:bg-white text-slate-700 hover:text-blue-600 text-xs sm:text-sm font-semibold shadow-lg shadow-slate-900/10 border border-slate-200/90 backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer">
-            <svg class="w-4 h-4 text-blue-600 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-            </svg>
-            <span>Kembali ke Pilihan Peran</span>
-        </button>
+        {{-- ========== SISI KIRI: Foto Kampus + Branding (Sticky di Layar & Tidak Melorot ke Bawah) ========== --}}
+        <div class="hidden lg:block lg:w-1/2 xl:w-2/5 relative">
+            <div class="sticky top-0 h-screen w-full bg-campus overflow-hidden flex flex-col justify-between p-8 xl:p-12 text-white">
+                {{-- Overlay gelap --}}
+                <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/90 via-[#1660eb]/60 to-[#0b1c3d]/80 pointer-events-none"></div>
 
-        {{-- ========== SISI KIRI: Foto Kampus + Branding (Logo Rapi Tanpa Kotak Putih Polos) ========== --}}
-        <div class="hidden lg:flex lg:w-1/2 xl:w-2/5 bg-campus relative overflow-hidden">
-            {{-- Overlay gelap --}}
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/85 via-[#1660eb]/55 to-[#0b1c3d]/75"></div>
-
-            {{-- Konten branding --}}
-            <div class="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full text-white">
-
-                {{-- Logo atas dalam wadah kapsul putih rapi --}}
-                <div class="pt-12">
+                {{-- Baris atas: Logo & Tombol Ganti Peran --}}
+                <div class="relative z-10 flex items-center justify-between">
                     <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
                         <img src="{{ asset('images/logo.png') }}"
                              alt="Logo Del Olympic"
-                             class="h-9 w-auto object-contain">
+                             class="h-8 w-auto object-contain">
                     </a>
+
+                    <button type="button"
+                            onclick="showRoleSelection()"
+                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-semibold border border-white/20 transition cursor-pointer">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span>Ganti Peran</span>
+                    </button>
                 </div>
 
-                {{-- Teks tengah --}}
-                <div class="space-y-6">
-                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium">
+                {{-- Teks tengah (Proporsional & Selalu Tampak) --}}
+                <div class="relative z-10 space-y-4 my-auto py-6">
+                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-3.5 py-1 text-xs font-medium">
                         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                         Pendaftaran Akun Del Olympic
                     </div>
 
-                    <h1 class="text-3xl xl:text-4xl font-bold font-display leading-tight">
+                    <h1 class="text-2xl xl:text-3xl font-bold font-display leading-tight">
                         Mulai Langkah<br>
                         Juaramu di <span class="text-blue-300">Del Olympic</span>
                     </h1>
 
-                    <p class="text-blue-100/90 text-base leading-relaxed">
+                    <p class="text-blue-100/90 text-sm leading-relaxed max-w-sm">
                         Bergabunglah dengan ribuan talenta muda di kompetisi olimpiade akademik bergengsi Institut Teknologi Del.
                     </p>
 
                     {{-- Panduan Role Singkat --}}
-                    <div class="space-y-3 pt-2 max-w-md">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
-                            <div class="text-blue-300 text-xs font-semibold uppercase tracking-wider">Peran Peserta</div>
-                            <div class="text-white text-xs sm:text-sm font-medium mt-1">Daftar lomba, submit karya, akses tes CBT, dan unduh sertifikat resmi.</div>
+                    <div class="space-y-2.5 pt-2 max-w-sm">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3.5 border border-white/15">
+                            <div class="text-blue-300 text-[11px] font-semibold uppercase tracking-wider">Peran Peserta</div>
+                            <div class="text-white text-xs font-medium mt-0.5">Daftar lomba, submit karya, akses tes CBT, dan unduh sertifikat resmi.</div>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
-                            <div class="text-blue-300 text-xs font-semibold uppercase tracking-wider">Peran Penyelenggara</div>
-                            <div class="text-white text-xs sm:text-sm font-medium mt-1">Kelola ajang kompetisi, verifikasi berkas, dan diverifikasi langsung oleh Admin.</div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3.5 border border-white/15">
+                            <div class="text-blue-300 text-[11px] font-semibold uppercase tracking-wider">Peran Penyelenggara</div>
+                            <div class="text-white text-xs font-medium mt-0.5">Kelola ajang kompetisi, verifikasi berkas, dan diverifikasi langsung oleh Admin.</div>
                         </div>
                     </div>
                 </div>
 
                 {{-- Footer kiri --}}
-                <div class="text-blue-200/70 text-xs">
+                <div class="relative z-10 text-blue-200/70 text-xs">
                     © {{ date('Y') }} Del Olympic — Institut Teknologi Del
                 </div>
             </div>
@@ -462,14 +459,14 @@
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <div class="sm:col-span-2">
                                     <label for="school_name" class="block text-xs font-semibold text-slate-700 mb-1.5">
-                                        Asal Sekolah / Madrasah <span class="text-red-500">*</span>
+                                        Asal Sekolah <span class="text-red-500">*</span>
                                     </label>
                                     <input
                                         id="school_name"
                                         name="school_name"
                                         type="text"
                                         value="{{ old('school_name') }}"
-                                        placeholder="Contoh: SMAN 1 Balige / SMPN 2 Laguboti"
+                                        placeholder="Contoh: SDN 1 Laguboti / SMPN 1 Balige / SMAN 1 Balige"
                                         class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
                                     >
                                 </div>
@@ -480,12 +477,13 @@
                                     <select
                                         id="education_level"
                                         name="education_level"
-                                        class="input-field w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:border-blue-500 focus:bg-white transition"
+                                        class="input-field w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:border-blue-500 focus:bg-white transition cursor-pointer"
                                     >
-                                        <option value="SMA/MA" {{ old('education_level') === 'SMA/MA' ? 'selected' : '' }}>SMA / MA</option>
+                                        <option value="SD" {{ old('education_level') === 'SD' ? 'selected' : '' }}>SD / Sederajat</option>
+                                        <option value="SMP" {{ old('education_level') === 'SMP' ? 'selected' : '' }}>SMP / Sederajat</option>
+                                        <option value="SMA" {{ old('education_level') === 'SMA' ? 'selected' : '' }}>SMA</option>
                                         <option value="SMK" {{ old('education_level') === 'SMK' ? 'selected' : '' }}>SMK</option>
-                                        <option value="SMP/MTs" {{ old('education_level') === 'SMP/MTs' ? 'selected' : '' }}>SMP / MTs</option>
-                                        <option value="Lainnya" {{ old('education_level') === 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                        <option value="Lainnya" {{ old('education_level') === 'Lainnya' ? 'selected' : '' }}>Lainnya / Mahasiswa</option>
                                     </select>
                                 </div>
                             </div>

@@ -342,7 +342,7 @@
                                             <svg class="w-4 h-4 mr-2 text-del-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                                             Peserta
                                         </span>
-                                        <span class="font-semibold text-slate-800">SMA / SMK / MA Sederajat</span>
+                                        <span class="font-semibold text-slate-800">SD, SMP, SMA / SMK Sederajat</span>
                                     </div>
 
                                     <div class="flex items-center justify-between">
@@ -729,43 +729,71 @@
         </div>
     </div>
 
-    <!-- MODAL PENDAFTARAN CEPAT -->
+    <!-- MODAL PILIHAN AKSES PENDAFTARAN LOMBA -->
     <div id="register-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeRegisterModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
             </div>
 
-            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-4">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            </div>
-
-            <h3 class="text-xl font-bold font-display text-slate-900">Formulir Pendaftaran</h3>
-            <p id="register-target-competition" class="text-xs font-semibold text-blue-700 mt-1 mb-4">
+            <h3 class="text-xl font-bold font-display text-slate-900">
+                Pendaftaran Kompetisi
+            </h3>
+            <p id="register-target-competition" class="text-xs font-semibold text-blue-700 mt-1 mb-3">
                 Pilihan Kompetisi
             </p>
 
-            <div class="space-y-3.5 text-xs">
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Nama Lengkap Peserta / Ketua Tim</label>
-                    <input type="text" placeholder="Masukkan nama sesuai kartu identitas" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                </div>
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Asal Sekolah / Universitas</label>
-                    <input type="text" placeholder="Contoh: SMA Negeri 1 Laguboti" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                </div>
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Nomor WhatsApp Aktif</label>
-                    <input type="tel" placeholder="08xxxxxxxxxx" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                Untuk mendaftar dan mengikuti kompetisi ini, silakan daftarkan akun baru atau masuk ke akun Anda terlebih dahulu.
+            </p>
+
+            <div class="space-y-3">
+                <!-- Pilihan 1: Daftar Akun Baru -->
+                <a href="{{ route('register', ['role' => 'peserta']) }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-bold">Daftar Akun Baru</div>
+                            <div class="text-[11px] text-blue-100 font-normal">Buat akun untuk mendaftar lomba</div>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-blue-200 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+
+                <!-- Pilihan 2: Masuk ke Akun -->
+                <a href="{{ route('login') }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-sm transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-bold">Masuk ke Akun</div>
+                            <div class="text-[11px] text-slate-400 font-normal">Sudah memiliki akun terdaftar</div>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </div>
 
-            <div class="mt-6 flex space-x-3">
-                <button onclick="closeRegisterModal()" class="w-1/2 py-2.5 border border-slate-200 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
-                    Batal
-                </button>
-                <button onclick="submitDummyRegistration()" class="w-1/2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-xs transition">
-                    Lanjut Pendaftaran
+            <div class="mt-5 text-center">
+                <button onclick="closeRegisterModal()" class="text-xs text-slate-400 hover:text-slate-600 transition font-medium">
+                    Batal / Kembali
                 </button>
             </div>
         </div>
@@ -778,7 +806,7 @@
                 title: "DMSC 2026 - Del Mathematics and Science Competition",
                 category: "Matematika & Sains Terapan",
                 organizer: "Institut Teknologi Del (IT Del)",
-                target: "Siswa/i SMA / SMK / MA Sederajat Seluruh Indonesia",
+                target: "Siswa/i SD, SMP, SMA & SMK Sederajat Seluruh Indonesia",
                 registrationPeriod: "10 Oktober 2026 s.d. 15 Desember 2026",
                 eventDate: "20 Desember 2026",
                 fee: "Rp 75.000 / Peserta",
