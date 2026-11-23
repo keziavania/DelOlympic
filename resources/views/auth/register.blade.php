@@ -342,36 +342,13 @@
                     {{-- Header form --}}
                     <div class="mb-6">
                         <div class="flex items-center justify-between mb-2">
-                            <h2 class="text-2xl sm:text-3xl font-bold font-display text-slate-900">
-                                Buat Akun Baru
+                            <h2 id="form-title" class="text-2xl sm:text-3xl font-bold font-display text-slate-900">
+                                {{ $activeRole === 'penyelenggara' ? 'Daftar sebagai Penyelenggara' : 'Daftar sebagai Peserta' }}
                             </h2>
                         </div>
-                        <p class="text-slate-500 text-sm">
-                            Lengkapi informasi data Anda untuk mendaftar.
+                        <p id="form-subtitle" class="text-slate-500 text-sm">
+                            {{ $activeRole === 'penyelenggara' ? 'Lengkapi data Anda untuk mendaftar sebagai penyelenggara kompetisi.' : 'Lengkapi data Anda untuk mendaftar sebagai peserta olimpiade.' }}
                         </p>
-                    </div>
-
-                    {{-- Switcher Role Pill di dalam Form --}}
-                    <div class="mb-6 p-1.5 bg-slate-100 rounded-2xl flex items-center gap-1 border border-slate-200/80">
-                        <button type="button"
-                                id="tab-peserta"
-                                onclick="setRoleForm('peserta')"
-                                class="w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 {{ $activeRole === 'peserta' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                            <span>Peserta</span>
-                        </button>
-                        
-                        <button type="button"
-                                id="tab-penyelenggara"
-                                onclick="setRoleForm('penyelenggara')"
-                                class="w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 {{ $activeRole === 'penyelenggara' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900' }}">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                            </svg>
-                            <span>Penyelenggara</span>
-                        </button>
                     </div>
 
                     {{-- Informasi Role Yang Dipilih --}}
@@ -704,35 +681,29 @@
         function setRoleForm(role) {
             document.getElementById('input-role').value = role;
 
-            const tabPeserta       = document.getElementById('tab-peserta');
-            const tabPenyelenggara = document.getElementById('tab-penyelenggara');
+            const formTitle        = document.getElementById('form-title');
+            const formSubtitle     = document.getElementById('form-subtitle');
             const infoPeserta      = document.getElementById('role-info-peserta');
             const infoPenyelenggara= document.getElementById('role-info-penyelenggara');
             const labelName        = document.getElementById('label-name');
             const inputName        = document.getElementById('name');
 
             if (role === 'penyelenggara') {
-                // Update tabs styling
-                tabPenyelenggara.className = 'w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 bg-white text-blue-700 shadow-sm';
-                tabPeserta.className       = 'w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900';
-                
-                // Toggle info cards
+                if (formTitle) formTitle.textContent = 'Daftar sebagai Penyelenggara';
+                if (formSubtitle) formSubtitle.textContent = 'Lengkapi data Anda untuk mendaftar sebagai penyelenggara kompetisi.';
+
                 infoPenyelenggara.classList.remove('hidden');
                 infoPeserta.classList.add('hidden');
 
-                // Update label & placeholder
                 labelName.textContent = 'Nama Penyelenggara / Organisasi';
                 inputName.placeholder = 'Contoh: Himpunan Mahasiswa Informatika';
             } else {
-                // Update tabs styling
-                tabPeserta.className       = 'w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 bg-white text-blue-700 shadow-sm';
-                tabPenyelenggara.className = 'w-1/2 py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900';
-                
-                // Toggle info cards
+                if (formTitle) formTitle.textContent = 'Daftar sebagai Peserta';
+                if (formSubtitle) formSubtitle.textContent = 'Lengkapi data Anda untuk mendaftar sebagai peserta olimpiade.';
+
                 infoPeserta.classList.remove('hidden');
                 infoPenyelenggara.classList.add('hidden');
 
-                // Update label & placeholder
                 labelName.textContent = 'Nama Lengkap Peserta';
                 inputName.placeholder = 'Contoh: Budi Santoso';
             }
