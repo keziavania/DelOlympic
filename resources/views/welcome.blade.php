@@ -497,7 +497,7 @@
                                 </button>
                                 <button 
                                     onclick="openRegisterModal('POSI - Pusat Olimpiade Indonesia')" 
-                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
+                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
                                 >
                                     Daftar Sekarang
                                 </button>
@@ -611,7 +611,7 @@
                                 </button>
                                 <button 
                                     onclick="openRegisterModal('Del Tech 2026 - Del Technology Competition')" 
-                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
+                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
                                 >
                                     Daftar Sekarang
                                 </button>

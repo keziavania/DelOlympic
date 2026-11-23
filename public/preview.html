@@ -69,7 +69,7 @@
 
     <!-- HERO SECTION WITH CAMPUS BACKGROUND -->
     <section class="relative min-h-[580px] sm:min-h-[640px] md:min-h-[700px] flex flex-col justify-between bg-cover bg-center bg-no-repeat overflow-hidden" 
-             style="background-image: url('images/del-campus.jpg');">
+             style="background-image: url('{{ asset('images/del-campus.jpg') }}');">
         
         <!-- Overlay halus agar foto tetap cerah dan teks sangat jelas -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/15 to-black/45 pointer-events-none"></div>
@@ -81,7 +81,7 @@
                     <!-- LOGO RESMI (GAMBAR KEDUA) -->
                     <a href="#" class="flex items-center group">
                         <img 
-                            src="images/logo.png" 
+                            src="{{ asset('images/logo.png') }}" 
                             alt="Logo Del Olympic" 
                             class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
                         >
@@ -101,10 +101,20 @@
                         </a>
                     </nav>
 
-                    <!-- TOMBOL MASUK DENGAN IKON PINTU / LOGIN (PERSIS GAMBAR 3) -->
-                    <div class="flex items-center">
-                        <a href="#masuk" onclick="openLoginNotice(event)" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-2 group">
-                            <!-- Icon Log In (Right arrow into bracket / door) -->
+                    <!-- TOMBOL AKSI: DAFTAR & MASUK -->
+                    <div class="flex items-center space-x-2 sm:space-x-3">
+                        <!-- Tombol Daftar Akun -->
+                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-1.5 group">
+                            <!-- Icon User Plus / Register -->
+                            <svg class="w-4 h-4 text-blue-100 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                            <span>Daftar</span>
+                        </a>
+
+                        <!-- Tombol Masuk / Login -->
+                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-1.5 group">
+                            <!-- Icon Log In -->
                             <svg class="w-4 h-4 text-slate-200 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
                             </svg>
@@ -280,7 +290,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Matematika, Rumus & Atom Sains - Tanpa Orang) -->
                                 <img 
-                                    src="images/dmsc-theme.svg" 
+                                    src="{{ asset('images/dmsc-theme.svg') }}" 
                                     alt="DMSC - Matematika & Sains" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -394,7 +404,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Medali Emas Olimpiade, Daun Zaitun, Tabung Reaksi - Tanpa Orang / Tanpa Bunga) -->
                                 <img 
-                                    src="images/posi-theme.svg" 
+                                    src="{{ asset('images/posi-theme.svg') }}" 
                                     alt="POSI - Olimpiade Sains Nasional" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -487,7 +497,7 @@
                                 </button>
                                 <button 
                                     onclick="openRegisterModal('POSI - Pusat Olimpiade Indonesia')" 
-                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
+                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
                                 >
                                     Daftar Sekarang
                                 </button>
@@ -508,7 +518,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Code Editor Terminal, Circuit Traces & Binary - Tanpa Orang) -->
                                 <img 
-                                    src="images/deltech-theme.svg" 
+                                    src="{{ asset('images/deltech-theme.svg') }}" 
                                     alt="Del Tech - Teknologi & IT" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -601,7 +611,7 @@
                                 </button>
                                 <button 
                                     onclick="openRegisterModal('Del Tech 2026 - Del Technology Competition')" 
-                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
+                                    class="w-full text-center py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs hover:shadow-md transition"
                                 >
                                     Daftar Sekarang
                                 </button>
@@ -653,7 +663,7 @@
                 <div class="md:col-span-2">
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="bg-white p-1.5 rounded-xl inline-block shadow-sm">
-                            <img src="images/logo.png" alt="Del Olympic" class="h-8 w-auto">
+                            <img src="{{ asset('images/logo.png') }}" alt="Del Olympic" class="h-8 w-auto">
                         </div>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
@@ -980,4 +990,3 @@
     </script>
 </body>
 </html>
-

@@ -38,7 +38,7 @@
                         }
                     },
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -115,7 +115,7 @@
     </style>
 </head>
 
-<body class="min-h-screen antialiased text-slate-800 bg-[#fafbfe] selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen antialiased text-slate-800 bg-[#fafbfe] selection:bg-blue-600 selection:text-white relative">
 
     @php
         // Cek role yang ditentukan dari URL / old input
@@ -125,10 +125,19 @@
     @endphp
 
     {{-- ========================================================================= --}}
-    {{-- TAMPILAN 1: PILIHAN PERAN (PERSIS GAMBAR REFERENSI DENGAN DESAIN DEL OLYMPIC) --}}
+    {{-- TAMPILAN 1: PILIHAN PERAN (PESERTA & PENYELENGGARA DENGAN DESAIN KONSISTEN) --}}
     {{-- ========================================================================= --}}
     <div id="view-role-selection" class="{{ $showFormInitially ? 'hidden' : 'flex' }} min-h-screen flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8 relative overflow-hidden">
         
+        {{-- Tombol Kembali di Pojok Atas Kiri (Standar Website Modern) --}}
+        <a href="{{ url('/') }}"
+           class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-blue-600 text-xs sm:text-sm font-semibold shadow-md shadow-slate-900/5 border border-slate-200 transition-all transform hover:-translate-y-0.5 active:translate-y-0 group">
+            <svg class="w-4 h-4 text-blue-600 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span>Kembali ke Beranda</span>
+        </a>
+
         {{-- Background aksen melingkar lembut --}}
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-100/50 rounded-full blur-3xl pointer-events-none"></div>
@@ -147,18 +156,18 @@
                     Selamat Datang
                 </h1>
                 <p class="mt-2.5 text-base text-slate-500 font-normal">
-                    Silakan pilih peran untuk melanjutkan
+                    Silakan pilih peran untuk melanjutkan pendaftaran
                 </p>
             </div>
 
-            {{-- 2 Kartu Peran (Peserta & Penyelenggara) --}}
+            {{-- 2 Kartu Peran (Peserta & Penyelenggara) - BORDER DIBUAT KONSISTEN DUA-DUANYA --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
                 
                 {{-- KARTU 1: PESERTA --}}
-                <div class="role-card bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm flex flex-col justify-between text-center relative overflow-hidden group">
+                <div class="role-card bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 hover:border-blue-500 shadow-sm flex flex-col justify-between text-center relative overflow-hidden group">
                     <div class="flex flex-col items-center">
                         {{-- Icon Peserta --}}
-                        <div class="w-20 h-20 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <div class="w-20 h-20 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-xs">
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
@@ -180,14 +189,14 @@
                         {{-- Tombol Utama: Daftar sebagai Peserta --}}
                         <button type="button"
                                 onclick="selectRoleAndOpenForm('peserta')"
-                                class="w-full py-3.5 px-6 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                                class="w-full py-3.5 px-6 rounded-2xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 cursor-pointer">
                             <span>Daftar sebagai Peserta</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
                         </button>
 
-                        {{-- Tombol Sekunder: Masuk ke Akun (sesuai referensi tombol abu-abu tua) --}}
+                        {{-- Tombol Sekunder: Masuk ke Akun --}}
                         <a href="{{ route('login') }}"
                            class="w-full inline-flex items-center justify-center py-3.5 px-6 rounded-2xl bg-[#525f7f] hover:bg-[#434e6b] text-white font-semibold text-sm shadow-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0">
                             Masuk ke Akun
@@ -195,11 +204,11 @@
                     </div>
                 </div>
 
-                {{-- KARTU 2: PENYELENGGARA (Dengan aksen border tegas sesuai gambar referensi) --}}
-                <div class="role-card bg-white rounded-3xl p-8 sm:p-10 border-2 border-blue-600 shadow-sm flex flex-col justify-between text-center relative overflow-hidden group">
+                {{-- KARTU 2: PENYELENGGARA (BORDER KONSISTEN PERSIS KARTU PESERTA) --}}
+                <div class="role-card bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 hover:border-blue-500 shadow-sm flex flex-col justify-between text-center relative overflow-hidden group">
                     <div class="flex flex-col items-center">
                         {{-- Icon Penyelenggara --}}
-                        <div class="w-20 h-20 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <div class="w-20 h-20 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-xs">
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                             </svg>
@@ -216,19 +225,19 @@
                         </p>
                     </div>
 
-                    {{-- Tombol Aksi --}}
+                    {{-- Tombol Aksi (Warna Satu Konsisten Biru) --}}
                     <div class="space-y-3 w-full">
                         {{-- Tombol Utama: Daftar sebagai Penyelenggara --}}
                         <button type="button"
                                 onclick="selectRoleAndOpenForm('penyelenggara')"
-                                class="w-full py-3.5 px-6 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+                                class="w-full py-3.5 px-6 rounded-2xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 cursor-pointer">
                             <span>Daftar sebagai Penyelenggara</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
                         </button>
 
-                        {{-- Tombol Sekunder: Masuk ke Akun (sesuai referensi tombol abu-abu tua) --}}
+                        {{-- Tombol Sekunder: Masuk ke Akun --}}
                         <a href="{{ route('login') }}"
                            class="w-full inline-flex items-center justify-center py-3.5 px-6 rounded-2xl bg-[#525f7f] hover:bg-[#434e6b] text-white font-semibold text-sm shadow-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0">
                             Masuk ke Akun
@@ -238,40 +247,39 @@
 
             </div>
 
-            {{-- Footer Tautan Kembali --}}
-            <div class="mt-12 text-center">
-                <a href="{{ url('/') }}"
-                   class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-800 transition font-medium">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                    </svg>
-                    Kembali ke Halaman Beranda
-                </a>
-            </div>
-
         </div>
     </div>
 
 
     {{-- ========================================================================= --}}
-    {{-- TAMPILAN 2: FORMULIR PENDAFTARAN (MENGIKUTI DESAIN LOGIN DARI TEMAN)     --}}
+    {{-- TAMPILAN 2: FORMULIR PENDAFTARAN LENGKAP (PESERTA & PENYELENGGARA)        --}}
     {{-- ========================================================================= --}}
-    <div id="view-registration-form" class="{{ $showFormInitially ? 'flex' : 'hidden' }} min-h-screen">
+    <div id="view-registration-form" class="{{ $showFormInitially ? 'flex' : 'hidden' }} min-h-screen relative">
         
-        {{-- ========== SISI KIRI: Foto Kampus + Branding (Persis Login) ========== --}}
-        <div class="hidden lg:flex lg:w-1/2 xl:w-3/5 bg-campus relative overflow-hidden">
+        {{-- Tombol Kembali di Pojok Atas Kiri (Kembali ke Pemilihan Peran) --}}
+        <button type="button"
+                onclick="showRoleSelection()"
+                class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/95 hover:bg-white text-slate-700 hover:text-blue-600 text-xs sm:text-sm font-semibold shadow-lg shadow-slate-900/10 border border-slate-200/90 backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 group cursor-pointer">
+            <svg class="w-4 h-4 text-blue-600 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span>Kembali ke Pilihan Peran</span>
+        </button>
+
+        {{-- ========== SISI KIRI: Foto Kampus + Branding (Logo Rapi Tanpa Kotak Putih Polos) ========== --}}
+        <div class="hidden lg:flex lg:w-1/2 xl:w-2/5 bg-campus relative overflow-hidden">
             {{-- Overlay gelap --}}
             <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/85 via-[#1660eb]/55 to-[#0b1c3d]/75"></div>
 
             {{-- Konten branding --}}
             <div class="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full text-white">
 
-                {{-- Logo atas --}}
-                <div>
-                    <a href="{{ url('/') }}" class="inline-flex items-center group">
+                {{-- Logo atas dalam wadah kapsul putih rapi --}}
+                <div class="pt-12">
+                    <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
                         <img src="{{ asset('images/logo.png') }}"
                              alt="Logo Del Olympic"
-                             class="h-12 w-auto object-contain brightness-0 invert transition-transform group-hover:scale-105">
+                             class="h-9 w-auto object-contain">
                     </a>
                 </div>
 
@@ -282,104 +290,96 @@
                         Pendaftaran Akun Del Olympic
                     </div>
 
-                    <h1 class="text-4xl xl:text-5xl font-bold font-display leading-tight">
+                    <h1 class="text-3xl xl:text-4xl font-bold font-display leading-tight">
                         Mulai Langkah<br>
                         Juaramu di <span class="text-blue-300">Del Olympic</span>
                     </h1>
 
-                    <p class="text-blue-100/90 text-lg leading-relaxed max-w-md">
+                    <p class="text-blue-100/90 text-base leading-relaxed">
                         Bergabunglah dengan ribuan talenta muda di kompetisi olimpiade akademik bergengsi Institut Teknologi Del.
                     </p>
 
                     {{-- Panduan Role Singkat --}}
-                    <div class="grid grid-cols-2 gap-4 pt-4 max-w-md">
+                    <div class="space-y-3 pt-2 max-w-md">
                         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
                             <div class="text-blue-300 text-xs font-semibold uppercase tracking-wider">Peran Peserta</div>
-                            <div class="text-white text-sm font-medium mt-1">Daftar lomba, kirim karya, dan raih sertifikat & medali.</div>
+                            <div class="text-white text-xs sm:text-sm font-medium mt-1">Daftar lomba, submit karya, akses tes CBT, dan unduh sertifikat resmi.</div>
                         </div>
                         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
                             <div class="text-blue-300 text-xs font-semibold uppercase tracking-wider">Peran Penyelenggara</div>
-                            <div class="text-white text-sm font-medium mt-1">Kelola ajang kompetisi, verifikasi berkas, dan umumkan pemenang.</div>
+                            <div class="text-white text-xs sm:text-sm font-medium mt-1">Kelola ajang kompetisi, verifikasi berkas, dan diverifikasi langsung oleh Admin.</div>
                         </div>
                     </div>
                 </div>
 
                 {{-- Footer kiri --}}
-                <div class="text-blue-200/70 text-sm">
+                <div class="text-blue-200/70 text-xs">
                     © {{ date('Y') }} Del Olympic — Institut Teknologi Del
                 </div>
             </div>
         </div>
 
         {{-- ========== SISI KANAN: Formulir Pendaftaran ========== --}}
-        <div class="w-full lg:w-1/2 xl:w-2/5 flex items-center justify-center min-h-screen bg-slate-50 px-4 py-10 sm:px-8">
-            <div class="w-full max-w-md animate-fade-in-up">
+        <div class="w-full lg:w-1/2 xl:w-3/5 flex items-center justify-center min-h-screen bg-slate-50 px-4 py-12 sm:px-8">
+            <div class="w-full max-w-xl animate-fade-in-up pt-10 sm:pt-4">
 
-                {{-- Tombol kembali ke pemilihan peran --}}
-                <div class="mb-4">
+                {{-- Tombol ganti peran di mobile/header card --}}
+                <div class="mb-4 flex items-center justify-between">
                     <button type="button"
                             onclick="showRoleSelection()"
-                            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-blue-600 transition group">
+                            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-blue-600 transition group cursor-pointer">
                         <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                         </svg>
                         <span>Ganti Pilihan Peran</span>
                     </button>
-                </div>
-
-                {{-- Logo mobile (hanya tampil di bawah lg) --}}
-                <div class="flex justify-center mb-6 lg:hidden">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset('images/logo.png') }}"
-                             alt="Logo Del Olympic"
-                             class="h-12 w-auto object-contain">
-                    </a>
+                    <span id="role-badge-top" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">
+                        {{ $activeRole === 'penyelenggara' ? 'Mode: Penyelenggara' : 'Mode: Peserta' }}
+                    </span>
                 </div>
 
                 {{-- Card Pendaftaran --}}
-                <div class="bg-white rounded-3xl px-8 py-9 sm:px-10 register-card register-card-anim">
+                <div class="bg-white rounded-3xl px-6 py-8 sm:px-10 sm:py-10 register-card register-card-anim">
 
                     {{-- Header form --}}
                     <div class="mb-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h2 id="form-title" class="text-2xl sm:text-3xl font-bold font-display text-slate-900">
-                                {{ $activeRole === 'penyelenggara' ? 'Daftar sebagai Penyelenggara' : 'Daftar sebagai Peserta' }}
-                            </h2>
-                        </div>
-                        <p id="form-subtitle" class="text-slate-500 text-sm">
-                            {{ $activeRole === 'penyelenggara' ? 'Lengkapi data Anda untuk mendaftar sebagai penyelenggara kompetisi.' : 'Lengkapi data Anda untuk mendaftar sebagai peserta olimpiade.' }}
+                        <h2 id="form-title" class="text-2xl sm:text-3xl font-bold font-display text-slate-900">
+                            {{ $activeRole === 'penyelenggara' ? 'Daftar sebagai Penyelenggara' : 'Daftar sebagai Peserta' }}
+                        </h2>
+                        <p id="form-subtitle" class="text-slate-500 text-sm mt-1.5">
+                            {{ $activeRole === 'penyelenggara' ? 'Lengkapi data lembaga & penanggung jawab untuk verifikasi admin.' : 'Lengkapi biodata lengkap siswa untuk keperluan kartu peserta & sertifikat olimpiade.' }}
                         </p>
                     </div>
 
                     {{-- Informasi Role Yang Dipilih --}}
-                    <div id="role-info-peserta" class="{{ $activeRole === 'peserta' ? 'block' : 'hidden' }} mb-5 p-3.5 bg-blue-50 border border-blue-100 rounded-2xl text-xs text-blue-800">
+                    <div id="role-info-peserta" class="{{ $activeRole === 'peserta' ? 'block' : 'hidden' }} mb-6 p-4 bg-blue-50 border border-blue-100 rounded-2xl text-xs text-blue-800">
                         <div class="flex items-center gap-2 font-semibold">
                             <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                            <span>Mendaftar sebagai Peserta Lomba</span>
+                            <span>Pendaftaran Akun Peserta Olimpiade</span>
                         </div>
                         <p class="mt-1 text-blue-700/80 leading-relaxed">
-                            Akun ini digunakan untuk mendaftar olimpiade, upload berkas, dan melihat sertifikat juara.
+                            Pastikan data nama, NISN, dan asal sekolah sesuai dokumen resmi untuk pencetakan sertifikat dan piagam lomba.
                         </p>
                     </div>
 
-                    <div id="role-info-penyelenggara" class="{{ $activeRole === 'penyelenggara' ? 'block' : 'hidden' }} mb-5 p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl text-xs text-indigo-800">
+                    <div id="role-info-penyelenggara" class="{{ $activeRole === 'penyelenggara' ? 'block' : 'hidden' }} mb-6 p-4 bg-indigo-50 border border-indigo-100 rounded-2xl text-xs text-indigo-800">
                         <div class="flex items-center gap-2 font-semibold">
                             <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
-                            <span>Mendaftar sebagai Penyelenggara</span>
+                            <span>Pendaftaran Penyelenggara (Verifikasi Admin)</span>
                         </div>
                         <p class="mt-1 text-indigo-700/80 leading-relaxed">
-                            Akun ini memiliki hak akses untuk mempublikasikan kompetisi baru dan memvalidasi peserta.
+                            Data instansi yang Anda isi akan diperiksa secara resmi oleh tim Admin Del Olympic sebelum izin publikasi lomba diaktifkan.
                         </p>
                     </div>
 
                     {{-- ===== ALERT: Pesan Error Validasi Umum ===== --}}
                     @if ($errors->any())
-                        <div class="mb-5 flex items-start gap-3 bg-red-50 border border-red-200 text-red-800 rounded-2xl px-4 py-3.5 text-sm">
+                        <div class="mb-6 flex items-start gap-3 bg-red-50 border border-red-200 text-red-800 rounded-2xl px-4 py-3.5 text-sm">
                             <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             <div class="text-xs space-y-1">
-                                <span class="font-semibold block text-red-900">Periksa kesalahan input:</span>
+                                <span class="font-semibold block text-red-900">Silakan periksa input form:</span>
                                 @foreach ($errors->all() as $error)
                                     <div>• {{ $error }}</div>
                                 @endforeach
@@ -391,62 +391,300 @@
                     <form id="form-register"
                           method="POST"
                           action="{{ route('register.post') }}"
-                          class="space-y-4"
+                          class="space-y-5"
                           novalidate>
                         @csrf
 
                         {{-- Hidden field untuk role --}}
                         <input type="hidden" name="role" id="input-role" value="{{ $activeRole }}">
 
-                        {{-- ======= FIELD NAMA ======= --}}
+                        {{-- ========================================================================= --}}
+                        {{-- BLOK 1: BIDANG KHUSUS PESERTA (BIODATA LENGKAP SISWA OLIMPIADE)          --}}
+                        {{-- ========================================================================= --}}
+                        <div id="fields-peserta" class="{{ $activeRole === 'peserta' ? 'block' : 'hidden' }} space-y-4">
+                            
+                            <div class="border-b border-slate-100 pb-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">1. Biodata Siswa</h3>
+                            </div>
+
+                            {{-- Nama Lengkap Siswa --}}
+                            <div>
+                                <label for="name_peserta" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                    Nama Lengkap Siswa <span class="text-red-500">*</span>
+                                </label>
+                                <input
+                                    id="name_peserta"
+                                    name="name"
+                                    type="text"
+                                    value="{{ old('role') === 'peserta' || $activeRole === 'peserta' ? old('name') : '' }}"
+                                    placeholder="Contoh: Budi Santoso (sesuai Ijazah/NISN)"
+                                    class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                >
+                            </div>
+
+                            {{-- NISN & Jenis Kelamin --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nisn" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        NISN (10 Digit) <span class="text-slate-400 text-[11px] font-normal">(Opsional)</span>
+                                    </label>
+                                    <input
+                                        id="nisn"
+                                        name="nisn"
+                                        type="text"
+                                        maxlength="15"
+                                        value="{{ old('nisn') }}"
+                                        placeholder="0071234567"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="gender" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Jenis Kelamin
+                                    </label>
+                                    <select
+                                        id="gender"
+                                        name="gender"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                        <option value="">-- Pilih Jenis Kelamin --</option>
+                                        <option value="Laki-laki" {{ old('gender') === 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ old('gender') === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-slate-100 pb-2 pt-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">2. Data Asal Sekolah</h3>
+                            </div>
+
+                            {{-- Asal Sekolah & Jenjang --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="sm:col-span-2">
+                                    <label for="school_name" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Asal Sekolah / Madrasah <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        id="school_name"
+                                        name="school_name"
+                                        type="text"
+                                        value="{{ old('school_name') }}"
+                                        placeholder="Contoh: SMAN 1 Balige / SMPN 2 Laguboti"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="education_level" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Jenjang <span class="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        id="education_level"
+                                        name="education_level"
+                                        class="input-field w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                        <option value="SMA/MA" {{ old('education_level') === 'SMA/MA' ? 'selected' : '' }}>SMA / MA</option>
+                                        <option value="SMK" {{ old('education_level') === 'SMK' ? 'selected' : '' }}>SMK</option>
+                                        <option value="SMP/MTs" {{ old('education_level') === 'SMP/MTs' ? 'selected' : '' }}>SMP / MTs</option>
+                                        <option value="Lainnya" {{ old('education_level') === 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- Kelas & Kota/Kabupaten --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="grade" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Kelas
+                                    </label>
+                                    <input
+                                        id="grade"
+                                        name="grade"
+                                        type="text"
+                                        value="{{ old('grade') }}"
+                                        placeholder="Contoh: Kelas X / XI / XII"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="city_peserta" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Kabupaten / Kota Sekolah
+                                    </label>
+                                    <input
+                                        id="city_peserta"
+                                        name="city"
+                                        type="text"
+                                        value="{{ old('city') }}"
+                                        placeholder="Contoh: Kab. Toba / Kota Medan"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- ========================================================================= --}}
+                        {{-- BLOK 2: BIDANG KHUSUS PENYELENGGARA (DATA LENGKAP INSTITUSI UNTUK ADMIN) --}}
+                        {{-- ========================================================================= --}}
+                        <div id="fields-penyelenggara" class="{{ $activeRole === 'penyelenggara' ? 'block' : 'hidden' }} space-y-4">
+                            
+                            <div class="border-b border-slate-100 pb-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">1. Data Legalitas Lembaga / Institusi</h3>
+                            </div>
+
+                            {{-- Nama Lembaga & Jenis Institusi --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="sm:col-span-2">
+                                    <label for="institution_name" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Nama Lembaga / Penyelenggara <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        id="institution_name"
+                                        name="institution_name"
+                                        type="text"
+                                        value="{{ old('institution_name') }}"
+                                        placeholder="Contoh: Fakultas Informatika IT Del / POSI Indonesia"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="institution_type" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Jenis Lembaga <span class="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        id="institution_type"
+                                        name="institution_type"
+                                        class="input-field w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                        <option value="Perguruan Tinggi" {{ old('institution_type') === 'Perguruan Tinggi' ? 'selected' : '' }}>Perguruan Tinggi</option>
+                                        <option value="Sekolah / Yayasan" {{ old('institution_type') === 'Sekolah / Yayasan' ? 'selected' : '' }}>Sekolah / Yayasan</option>
+                                        <option value="Lembaga Olimpiade Resmi" {{ old('institution_type') === 'Lembaga Olimpiade Resmi' ? 'selected' : '' }}>Lembaga Olimpiade Resmi</option>
+                                        <option value="Organisasi Pendidikan" {{ old('institution_type') === 'Organisasi Pendidikan' ? 'selected' : '' }}>Organisasi Pendidikan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- Alamat Kantor / Kampus --}}
+                            <div>
+                                <label for="institution_address" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                    Alamat Kantor / Kampus Lengkap <span class="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    id="institution_address"
+                                    name="institution_address"
+                                    rows="2"
+                                    placeholder="Jl. Sisingamangaraja, Sitoluama, Laguboti, Toba, Sumatera Utara"
+                                    class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                >{{ old('institution_address') }}</textarea>
+                            </div>
+
+                            {{-- Website Resmi & Link Dokumen Legalitas --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="institution_website" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Website / Tautan Media Sosial Resmi
+                                    </label>
+                                    <input
+                                        id="institution_website"
+                                        name="institution_website"
+                                        type="url"
+                                        value="{{ old('institution_website') }}"
+                                        placeholder="https://del.ac.id"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="document_link" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Tautan SK / Dokumen Legalitas <span class="text-slate-400 text-[11px] font-normal">(Drive / PDF)</span>
+                                    </label>
+                                    <input
+                                        id="document_link"
+                                        name="document_link"
+                                        type="url"
+                                        value="{{ old('document_link') }}"
+                                        placeholder="https://drive.google.com/..."
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="border-b border-slate-100 pb-2 pt-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">2. Data Penanggung Jawab</h3>
+                            </div>
+
+                            {{-- Nama Penanggung Jawab & Jabatan --}}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name_penyelenggara" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Nama Penanggung Jawab <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        id="name_penyelenggara"
+                                        name="name_organizer"
+                                        type="text"
+                                        value="{{ old('role') === 'penyelenggara' ? old('name') : '' }}"
+                                        placeholder="Contoh: Dr. Ir. Johannes Saragih, M.Kom"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="position" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                        Jabatan di Institusi <span class="text-red-500">*</span>
+                                    </label>
+                                    <input
+                                        id="position"
+                                        name="position"
+                                        type="text"
+                                        value="{{ old('position') }}"
+                                        placeholder="Contoh: Dosen Pembina / Ketua Pelaksana"
+                                        class="input-field w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        {{-- ========================================================================= --}}
+                        {{-- BLOK 3: KONTAK & AKUN LOGIN (BERLAKU UNTUK KEDUA PERAN)                   --}}
+                        {{-- ========================================================================= --}}
+                        <div class="border-b border-slate-100 pb-2 pt-1">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">
+                                <span id="section-contact-title">3. Kontak & Kredensial Akun</span>
+                            </h3>
+                        </div>
+
+                        {{-- Nomor Telepon / WhatsApp --}}
                         <div>
-                            <label for="name"
-                                   id="label-name"
-                                   class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                {{ $activeRole === 'penyelenggara' ? 'Nama Penyelenggara / Organisasi' : 'Nama Lengkap Peserta' }}
+                            <label for="phone" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                Nomor WhatsApp / Telepon Aktif <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                     </svg>
                                 </div>
                                 <input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    autocomplete="name"
-                                    value="{{ old('name') }}"
+                                    id="phone"
+                                    name="phone"
+                                    type="tel"
+                                    value="{{ old('phone') }}"
                                     required
-                                    placeholder="{{ $activeRole === 'penyelenggara' ? 'Contoh: Himpunan Mahasiswa Informatika' : 'Contoh: Budi Santoso' }}"
-                                    class="input-field w-full pl-10 pr-4 py-3 rounded-xl border
-                                           {{ $errors->has('name') ? 'border-red-400 bg-red-50 text-red-900' : 'border-slate-200 bg-slate-50 text-slate-900' }}
-                                           text-sm placeholder-slate-400
-                                           focus:border-blue-500 focus:bg-white
-                                           transition duration-150"
+                                    placeholder="081234567890"
+                                    class="input-field w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
                                 >
                             </div>
-                            @error('name')
-                                <p class="mt-1.5 flex items-center gap-1.5 text-red-600 text-xs font-medium">
-                                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                    </svg>
-                                    {{ $message }}
-                                </p>
-                            @enderror
                         </div>
 
-                        {{-- ======= FIELD EMAIL ======= --}}
+                        {{-- Alamat Email --}}
                         <div>
-                            <label for="email"
-                                   class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                Alamat Email
+                            <label for="email" id="label-email" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                {{ $activeRole === 'penyelenggara' ? 'Alamat Email Resmi Lembaga / Penyelenggara' : 'Alamat Email Aktif' }} <span class="text-red-500">*</span>
                             </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
                                     </svg>
                                 </div>
                                 <input
@@ -457,124 +695,86 @@
                                     value="{{ old('email') }}"
                                     required
                                     placeholder="nama@example.com"
-                                    class="input-field w-full pl-10 pr-4 py-3 rounded-xl border
-                                           {{ $errors->has('email') ? 'border-red-400 bg-red-50 text-red-900' : 'border-slate-200 bg-slate-50 text-slate-900' }}
-                                           text-sm placeholder-slate-400
-                                           focus:border-blue-500 focus:bg-white
-                                           transition duration-150"
+                                    class="input-field w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
                                 >
                             </div>
-                            @error('email')
-                                <p class="mt-1.5 flex items-center gap-1.5 text-red-600 text-xs font-medium">
-                                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                    </svg>
-                                    {{ $message }}
-                                </p>
-                            @enderror
                         </div>
 
-                        {{-- ======= FIELD KATA SANDI ======= --}}
-                        <div>
-                            <label for="password"
-                                   class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                Kata Sandi
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                                    </svg>
+                        {{-- Kata Sandi & Konfirmasi Kata Sandi --}}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="password" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                    Kata Sandi <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autocomplete="new-password"
+                                        required
+                                        placeholder="Min. 6 karakter"
+                                        oninput="checkPasswordStrength(this.value)"
+                                        class="input-field w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick="togglePasswordVisibility('password', 'icon-eye-1', 'icon-eye-off-1')"
+                                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600 transition cursor-pointer">
+                                        <svg id="icon-eye-1" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                        <svg id="icon-eye-off-1" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                                        </svg>
+                                    </button>
                                 </div>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autocomplete="new-password"
-                                    required
-                                    placeholder="Minimal 6 karakter"
-                                    oninput="checkPasswordStrength(this.value)"
-                                    class="input-field w-full pl-10 pr-11 py-3 rounded-xl border
-                                           {{ $errors->has('password') ? 'border-red-400 bg-red-50 text-red-900' : 'border-slate-200 bg-slate-50 text-slate-900' }}
-                                           text-sm placeholder-slate-400
-                                           focus:border-blue-500 focus:bg-white
-                                           transition duration-150"
-                                >
-                                <button
-                                    type="button"
-                                    onclick="togglePasswordVisibility('password', 'icon-eye-1', 'icon-eye-off-1')"
-                                    class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600 transition"
-                                    aria-label="Tampilkan / sembunyikan kata sandi">
-                                    <svg id="icon-eye-1" class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                    <svg id="icon-eye-off-1" class="w-4.5 h-4.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            {{-- Indikator Kekuatan Password --}}
-                            <div class="mt-2">
-                                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                                    <div id="strength-meter" class="strength-bar h-full w-0 bg-slate-300"></div>
-                                </div>
-                                <p id="strength-text" class="text-[11px] text-slate-400 mt-1">Kekuatan kata sandi: belum diisi</p>
                             </div>
 
-                            @error('password')
-                                <p class="mt-1.5 flex items-center gap-1.5 text-red-600 text-xs font-medium">
-                                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                    </svg>
-                                    {{ $message }}
-                                </p>
-                            @enderror
+                            <div>
+                                <label for="password_confirmation" class="block text-xs font-semibold text-slate-700 mb-1.5">
+                                    Konfirmasi Sandi <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        id="password_confirmation"
+                                        name="password_confirmation"
+                                        type="password"
+                                        autocomplete="new-password"
+                                        required
+                                        placeholder="Ulangi kata sandi"
+                                        oninput="checkPasswordMatch()"
+                                        class="input-field w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition"
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick="togglePasswordVisibility('password_confirmation', 'icon-eye-2', 'icon-eye-off-2')"
+                                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600 transition cursor-pointer">
+                                        <svg id="icon-eye-2" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                        <svg id="icon-eye-off-2" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        {{-- ======= FIELD KONFIRMASI KATA SANDI ======= --}}
-                        <div>
-                            <label for="password_confirmation"
-                                   class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                Ulangi Kata Sandi
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                                    <svg class="w-4.5 h-4.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                    </svg>
-                                </div>
-                                <input
-                                    id="password_confirmation"
-                                    name="password_confirmation"
-                                    type="password"
-                                    autocomplete="new-password"
-                                    required
-                                    placeholder="Ulangi kata sandi Anda"
-                                    oninput="checkPasswordMatch()"
-                                    class="input-field w-full pl-10 pr-11 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-sm placeholder-slate-400 focus:border-blue-500 focus:bg-white transition duration-150"
-                                >
-                                <button
-                                    type="button"
-                                    onclick="togglePasswordVisibility('password_confirmation', 'icon-eye-2', 'icon-eye-off-2')"
-                                    class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600 transition"
-                                    aria-label="Tampilkan / sembunyikan konfirmasi kata sandi">
-                                    <svg id="icon-eye-2" class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                    <svg id="icon-eye-off-2" class="w-4.5 h-4.5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-                                    </svg>
-                                </button>
+                        {{-- Indikator Sandi --}}
+                        <div class="space-y-1">
+                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                <div id="strength-meter" class="strength-bar h-full w-0 bg-slate-300"></div>
                             </div>
-                            <p id="match-text" class="text-[11px] mt-1 text-slate-400"></p>
+                            <div class="flex items-center justify-between">
+                                <p id="strength-text" class="text-[11px] text-slate-400">Kekuatan kata sandi: belum diisi</p>
+                                <p id="match-text" class="text-[11px] text-slate-400"></p>
+                            </div>
                         </div>
 
-                        {{-- ======= CHECKBOX PERSETUJUAN KETENTUAN ======= --}}
+                        {{-- Checkbox Persetujuan --}}
                         <div class="pt-1">
                             <label class="flex items-start gap-2.5 cursor-pointer group select-none">
                                 <input
@@ -590,24 +790,18 @@
                                     Saya menyetujui <span class="text-blue-600 font-medium">Syarat & Ketentuan</span> serta <span class="text-blue-600 font-medium">Kebijakan Privasi</span> kompetisi Del Olympic.
                                 </span>
                             </label>
-                            @error('terms')
-                                <p class="mt-1 flex items-center gap-1.5 text-red-600 text-xs font-medium">
-                                    {{ $message }}
-                                </p>
-                            @enderror
                         </div>
 
-                        {{-- ======= TOMBOL SUBMIT DAFTAR ======= --}}
+                        {{-- Tombol Submit Daftar (Konsisten Satu Warna Biru) --}}
                         <button
                             type="submit"
                             id="btn-submit"
-                            class="w-full flex items-center justify-center gap-2 py-3.5 px-6 mt-3
+                            class="w-full flex items-center justify-center gap-2 py-3.5 px-6 mt-4
                                    bg-blue-600 hover:bg-blue-700 active:bg-blue-800
                                    text-white text-sm font-semibold rounded-xl
-                                   shadow-lg shadow-blue-600/30
+                                   shadow-lg shadow-blue-600/25
                                    transition duration-150 transform hover:-translate-y-0.5 active:translate-y-0
-                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            {{-- Spinner (tersembunyi saat normal) --}}
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer">
                             <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
                                 <path class="opacity-75" fill="currentColor"
@@ -618,22 +812,15 @@
 
                     </form>
 
-                    {{-- ======= DIVIDER ======= --}}
-                    <div class="relative my-6">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-slate-200"></div>
-                        </div>
-                        <div class="relative flex justify-center text-xs">
-                            <span class="bg-white px-3 text-slate-400 font-medium">sudah punya akun?</span>
-                        </div>
-                    </div>
+                    {{-- ======= DIVIDER BERSIH (HAPUS PERTANYAAN ABU-ABU GANDA) ======= --}}
+                    <div class="w-full border-t border-slate-100 my-6"></div>
 
                     {{-- ======= LINK KE HALAMAN MASUK (LOGIN) ======= --}}
                     <div class="text-center">
                         <p class="text-sm text-slate-600">
                             Sudah memiliki akun?
                             <a href="{{ route('login') }}"
-                               class="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition">
+                               class="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition ml-1">
                                 Masuk ke Akun Anda
                             </a>
                         </p>
@@ -681,33 +868,65 @@
         function setRoleForm(role) {
             document.getElementById('input-role').value = role;
 
-            const formTitle        = document.getElementById('form-title');
-            const formSubtitle     = document.getElementById('form-subtitle');
-            const infoPeserta      = document.getElementById('role-info-peserta');
-            const infoPenyelenggara= document.getElementById('role-info-penyelenggara');
-            const labelName        = document.getElementById('label-name');
-            const inputName        = document.getElementById('name');
+            const formTitle         = document.getElementById('form-title');
+            const formSubtitle      = document.getElementById('form-subtitle');
+            const roleBadge         = document.getElementById('role-badge-top');
+            const infoPeserta       = document.getElementById('role-info-peserta');
+            const infoPenyelenggara = document.getElementById('role-info-penyelenggara');
+            const fieldsPeserta     = document.getElementById('fields-peserta');
+            const fieldsPenyelenggara = document.getElementById('fields-penyelenggara');
+            const labelEmail        = document.getElementById('label-email');
+            const namePesertaInput  = document.getElementById('name_peserta');
+            const nameOrgInput      = document.getElementById('name_penyelenggara');
 
             if (role === 'penyelenggara') {
                 if (formTitle) formTitle.textContent = 'Daftar sebagai Penyelenggara';
-                if (formSubtitle) formSubtitle.textContent = 'Lengkapi data Anda untuk mendaftar sebagai penyelenggara kompetisi.';
+                if (formSubtitle) formSubtitle.textContent = 'Lengkapi data lembaga & penanggung jawab untuk verifikasi admin.';
+                if (roleBadge) {
+                    roleBadge.textContent = 'Mode: Penyelenggara';
+                    roleBadge.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700';
+                }
 
                 infoPenyelenggara.classList.remove('hidden');
                 infoPeserta.classList.add('hidden');
 
-                labelName.textContent = 'Nama Penyelenggara / Organisasi';
-                inputName.placeholder = 'Contoh: Himpunan Mahasiswa Informatika';
+                fieldsPenyelenggara.classList.remove('hidden');
+                fieldsPeserta.classList.add('hidden');
+
+                if (labelEmail) labelEmail.innerHTML = 'Alamat Email Resmi Lembaga / Penyelenggara <span class="text-red-500">*</span>';
+
+                // Sinkronkan nama jika diisi
+                if (nameOrgInput) {
+                    nameOrgInput.name = 'name';
+                    if (namePesertaInput) namePesertaInput.name = 'name_peserta_temp';
+                }
             } else {
                 if (formTitle) formTitle.textContent = 'Daftar sebagai Peserta';
-                if (formSubtitle) formSubtitle.textContent = 'Lengkapi data Anda untuk mendaftar sebagai peserta olimpiade.';
+                if (formSubtitle) formSubtitle.textContent = 'Lengkapi biodata lengkap siswa untuk keperluan kartu peserta & sertifikat olimpiade.';
+                if (roleBadge) {
+                    roleBadge.textContent = 'Mode: Peserta';
+                    roleBadge.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700';
+                }
 
                 infoPeserta.classList.remove('hidden');
                 infoPenyelenggara.classList.add('hidden');
 
-                labelName.textContent = 'Nama Lengkap Peserta';
-                inputName.placeholder = 'Contoh: Budi Santoso';
+                fieldsPeserta.classList.remove('hidden');
+                fieldsPenyelenggara.classList.add('hidden');
+
+                if (labelEmail) labelEmail.innerHTML = 'Alamat Email Aktif <span class="text-red-500">*</span>';
+
+                if (namePesertaInput) {
+                    namePesertaInput.name = 'name';
+                    if (nameOrgInput) nameOrgInput.name = 'name_organizer_temp';
+                }
             }
         }
+
+        // Inisialisasi awal role
+        document.addEventListener('DOMContentLoaded', function() {
+            setRoleForm('{{ $activeRole }}');
+        });
 
         // ========== Toggle Show/Hide Password ==========
         function togglePasswordVisibility(inputId, eyeId, eyeOffId) {
@@ -735,7 +954,7 @@
                 meter.style.width = '0%';
                 meter.className = 'strength-bar h-full w-0 bg-slate-300';
                 text.textContent = 'Kekuatan kata sandi: belum diisi';
-                text.className = 'text-[11px] text-slate-400 mt-1';
+                text.className = 'text-[11px] text-slate-400';
                 return;
             }
 
@@ -749,18 +968,18 @@
             if (score <= 2) {
                 meter.style.width = '33%';
                 meter.className = 'strength-bar h-full bg-red-500';
-                text.textContent = 'Kekuatan kata sandi: Lemah (tambahkan angka & huruf besar)';
-                text.className = 'text-[11px] text-red-600 mt-1 font-medium';
+                text.textContent = 'Kekuatan kata sandi: Lemah (tambahkan angka & huruf)';
+                text.className = 'text-[11px] text-red-600 font-medium';
             } else if (score <= 3) {
                 meter.style.width = '66%';
                 meter.className = 'strength-bar h-full bg-amber-500';
                 text.textContent = 'Kekuatan kata sandi: Cukup baik';
-                text.className = 'text-[11px] text-amber-600 mt-1 font-medium';
+                text.className = 'text-[11px] text-amber-600 font-medium';
             } else {
                 meter.style.width = '100%';
                 meter.className = 'strength-bar h-full bg-emerald-500';
                 text.textContent = 'Kekuatan kata sandi: Sangat Kuat & Aman';
-                text.className = 'text-[11px] text-emerald-600 mt-1 font-medium';
+                text.className = 'text-[11px] text-emerald-600 font-medium';
             }
 
             checkPasswordMatch();
@@ -779,10 +998,10 @@
 
             if (password === confirm) {
                 text.textContent = '✓ Kata sandi cocok';
-                text.className   = 'text-[11px] mt-1 text-emerald-600 font-medium';
+                text.className   = 'text-[11px] text-emerald-600 font-medium';
             } else {
                 text.textContent = '✗ Kata sandi belum cocok';
-                text.className   = 'text-[11px] mt-1 text-red-600 font-medium';
+                text.className   = 'text-[11px] text-red-600 font-medium';
             }
         }
 
@@ -791,13 +1010,6 @@
             const btn     = document.getElementById('btn-submit');
             const spinner = document.getElementById('btn-spinner');
             const text    = document.getElementById('btn-text');
-
-            const name     = document.getElementById('name').value.trim();
-            const email    = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const terms    = document.getElementById('terms').checked;
-
-            if (!name || !email || !password || !terms) return; // biarkan browser validasi
 
             // Aktifkan state loading
             btn.classList.add('btn-loading');

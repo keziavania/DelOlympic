@@ -106,7 +106,16 @@
     </style>
 </head>
 
-<body class="min-h-screen antialiased text-slate-800 selection:bg-blue-600 selection:text-white">
+<body class="min-h-screen antialiased text-slate-800 selection:bg-blue-600 selection:text-white relative">
+
+    {{-- ===================== TOMBOL KEMBALI DI ATAS KIRI (STANDAR WEBSITE MODERN) ===================== --}}
+    <a href="{{ url('/') }}"
+       class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/95 hover:bg-white text-slate-700 hover:text-blue-600 text-xs sm:text-sm font-semibold shadow-lg shadow-slate-900/10 border border-slate-200/90 backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 group">
+        <svg class="w-4 h-4 text-blue-600 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        <span>Kembali ke Beranda</span>
+    </a>
 
     {{-- ===================== BACKGROUND SPLIT ===================== --}}
     <div class="min-h-screen flex">
@@ -114,17 +123,17 @@
         {{-- ========== SISI KIRI: Foto Kampus + Branding ========== --}}
         <div class="hidden lg:flex lg:w-1/2 xl:w-3/5 bg-campus relative overflow-hidden">
             {{-- Overlay gelap --}}
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/80 via-[#1660eb]/50 to-[#0b1c3d]/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/85 via-[#1660eb]/55 to-[#0b1c3d]/75"></div>
 
             {{-- Konten branding --}}
             <div class="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full text-white">
 
-                {{-- Logo atas --}}
-                <div>
-                    <a href="{{ url('/') }}" class="inline-flex items-center group">
+                {{-- Logo atas dalam wadah kapsul putih rapi (menghilangkan kotak putih polos tak berlogo) --}}
+                <div class="pt-12">
+                    <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
                         <img src="{{ asset('images/logo.png') }}"
                              alt="Logo Del Olympic"
-                             class="h-12 w-auto object-contain brightness-0 invert transition-transform group-hover:scale-105">
+                             class="h-9 w-auto object-contain">
                     </a>
                 </div>
 
@@ -390,19 +399,57 @@
                         </p>
                     </div>
 
-                    {{-- ======= INFO ROLE ======= --}}
-                    <div class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-2xl">
-                        <p class="text-xs text-blue-700 font-semibold mb-2 flex items-center gap-1.5">
+                    {{-- ======= KOTAK ACUAN CONTOH LOGIN UNTUK UJI COBA WEBSITE ======= --}}
+                    <div class="mt-6 p-4 bg-slate-50 border border-slate-200/90 rounded-2xl">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Akun Uji Coba Website
+                            </span>
+                            <span class="text-[10px] font-semibold text-blue-700 bg-blue-100/80 px-2 py-0.5 rounded-md">
+                                Acuan Utama
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                            Gunakan satu akun acuan berikut untuk langsung mencoba login ke sistem:
+                        </p>
+
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs space-y-1.5 font-mono mb-3 shadow-2xs">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 font-sans">Email:</span>
+                                <span class="text-slate-900 font-semibold select-all">peserta@delolympic.id</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-400 font-sans">Kata Sandi:</span>
+                                <span class="text-slate-900 font-semibold select-all">password123</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-1 border-t border-slate-100 font-sans">
+                                <span class="text-slate-400">Role / Status:</span>
+                                <span class="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded text-[11px]">Peserta (Aktif)</span>
+                            </div>
+                        </div>
+
+                        <button type="button"
+                                onclick="fillDemoCredentials('peserta@delolympic.id', 'password123')"
+                                class="w-full py-2.5 px-3 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200/60 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs">
+                            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            <span>Gunakan Akun Contoh Ini (Isi Otomatis)</span>
+                        </button>
+                    </div>
+
+                    {{-- ======= INFO ROLE OTOMATIS ======= --}}
+                    <div class="mt-4 p-3.5 bg-blue-50/70 border border-blue-100 rounded-2xl">
+                        <p class="text-xs text-blue-700 font-semibold mb-1 flex items-center gap-1.5">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            Informasi Login
+                            Satu Pintu Masuk
                         </p>
-                        <p class="text-xs text-blue-600/80 leading-relaxed">
-                            Satu halaman masuk untuk semua pengguna. Sistem akan secara otomatis 
-                            mengarahkan Anda sesuai peran: 
-                            <strong>Admin</strong>, <strong>Penyelenggara</strong>, atau <strong>Peserta</strong>.
+                        <p class="text-[11px] text-blue-600/80 leading-relaxed">
+                            Sistem secara otomatis mengarahkan Anda ke Dashboard sesuai peran: <strong>Peserta</strong>, <strong>Penyelenggara</strong>, atau <strong>Admin</strong>.
                         </p>
                     </div>
 
@@ -431,6 +478,18 @@
 
     {{-- ===================== JAVASCRIPT ===================== --}}
     <script>
+        // ========== Isi Otomatis Akun Demo ==========
+        function fillDemoCredentials(email, password) {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            emailInput.value = email;
+            passwordInput.value = password;
+            emailInput.focus();
+            const btn = document.getElementById('btn-submit');
+            btn.classList.add('ring-4', 'ring-blue-300');
+            setTimeout(() => btn.classList.remove('ring-4', 'ring-blue-300'), 600);
+        }
+
         // ========== Toggle Show/Hide Password ==========
         function togglePassword() {
             const input    = document.getElementById('password');
