@@ -127,32 +127,16 @@
                 </div>
 
                 {{-- Teks tengah (Proporsional & Selalu di Tengah Layar) --}}
-                <div class="relative z-10 space-y-4 my-auto py-4">
+                <div class="relative z-10 space-y-4 my-auto py-6">
                     <h1 class="text-3xl xl:text-4xl font-bold font-display leading-tight">
                         Selamat Datang<br>
                         di <span class="text-blue-300">Del Olympic</span>
                     </h1>
 
-                    <p class="text-blue-100/90 text-sm xl:text-base leading-relaxed max-w-md">
+                    <p class="text-blue-100/90 text-base leading-relaxed max-w-sm">
                         Platform manajemen olimpiade resmi Institut Teknologi Del. 
                         Kelola kompetisi, pantau peserta, dan raih prestasi terbaik bersama kami.
                     </p>
-
-                    {{-- Statistik --}}
-                    <div class="grid grid-cols-3 gap-3 pt-2">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
-                            <div class="text-xl xl:text-2xl font-bold font-display text-white">3+</div>
-                            <div class="text-blue-200 text-[11px] mt-0.5">Kategori Lomba</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
-                            <div class="text-xl xl:text-2xl font-bold font-display text-white">500+</div>
-                            <div class="text-blue-200 text-[11px] mt-0.5">Peserta Aktif</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
-                            <div class="text-xl xl:text-2xl font-bold font-display text-white">100%</div>
-                            <div class="text-blue-200 text-[11px] mt-0.5">Digital</div>
-                        </div>
-                    </div>
                 </div>
 
                 {{-- Footer kiri --}}
