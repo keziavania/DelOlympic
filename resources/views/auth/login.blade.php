@@ -108,79 +108,74 @@
 
 <body class="min-h-screen antialiased text-slate-800 selection:bg-blue-600 selection:text-white relative">
 
-    {{-- ===================== TOMBOL KEMBALI DI ATAS KIRI (STANDAR WEBSITE MODERN) ===================== --}}
-    <a href="{{ url('/') }}"
-       class="fixed top-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/95 hover:bg-white text-slate-700 hover:text-blue-600 text-xs sm:text-sm font-semibold shadow-lg shadow-slate-900/10 border border-slate-200/90 backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 group">
-        <svg class="w-4 h-4 text-blue-600 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-        </svg>
-        <span>Kembali ke Beranda</span>
-    </a>
-
     {{-- ===================== BACKGROUND SPLIT ===================== --}}
-    <div class="min-h-screen flex">
+    <div class="min-h-screen flex relative">
 
-        {{-- ========== SISI KIRI: Foto Kampus + Branding ========== --}}
-        <div class="hidden lg:flex lg:w-1/2 xl:w-3/5 bg-campus relative overflow-hidden">
-            {{-- Overlay gelap --}}
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/85 via-[#1660eb]/55 to-[#0b1c3d]/75"></div>
+        {{-- ========== SISI KIRI: Foto Kampus + Branding (Sticky di Layar & Tidak Bergerak Saat Scroll) ========== --}}
+        <div class="hidden lg:block lg:w-1/2 xl:w-2/5 relative">
+            <div class="sticky top-0 h-screen w-full bg-campus overflow-hidden flex flex-col justify-between p-8 xl:p-12 text-white">
+                {{-- Overlay gelap --}}
+                <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/90 via-[#1660eb]/60 to-[#0b1c3d]/80 pointer-events-none"></div>
 
-            {{-- Konten branding --}}
-            <div class="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full text-white">
-
-                {{-- Logo atas dalam wadah kapsul putih rapi (menghilangkan kotak putih polos tak berlogo) --}}
-                <div class="pt-12">
+                {{-- Baris atas: Logo --}}
+                <div class="relative z-10 flex items-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
                         <img src="{{ asset('images/logo.png') }}"
                              alt="Logo Del Olympic"
-                             class="h-9 w-auto object-contain">
+                             class="h-8 w-auto object-contain">
                     </a>
                 </div>
 
-                {{-- Teks tengah --}}
-                <div class="space-y-6">
-                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm font-medium">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        Platform Olimpiade IT Del
-                    </div>
-
-                    <h1 class="text-4xl xl:text-5xl font-bold font-display leading-tight">
+                {{-- Teks tengah (Proporsional & Selalu di Tengah Layar) --}}
+                <div class="relative z-10 space-y-4 my-auto py-4">
+                    <h1 class="text-3xl xl:text-4xl font-bold font-display leading-tight">
                         Selamat Datang<br>
                         di <span class="text-blue-300">Del Olympic</span>
                     </h1>
 
-                    <p class="text-blue-100/90 text-lg leading-relaxed max-w-md">
+                    <p class="text-blue-100/90 text-sm xl:text-base leading-relaxed max-w-md">
                         Platform manajemen olimpiade resmi Institut Teknologi Del. 
                         Kelola kompetisi, pantau peserta, dan raih prestasi terbaik bersama kami.
                     </p>
 
                     {{-- Statistik --}}
-                    <div class="grid grid-cols-3 gap-4 pt-4">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 text-center">
-                            <div class="text-2xl font-bold font-display text-white">3+</div>
-                            <div class="text-blue-200 text-xs mt-1">Kategori Lomba</div>
+                    <div class="grid grid-cols-3 gap-3 pt-2">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
+                            <div class="text-xl xl:text-2xl font-bold font-display text-white">3+</div>
+                            <div class="text-blue-200 text-[11px] mt-0.5">Kategori Lomba</div>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 text-center">
-                            <div class="text-2xl font-bold font-display text-white">500+</div>
-                            <div class="text-blue-200 text-xs mt-1">Peserta Aktif</div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
+                            <div class="text-xl xl:text-2xl font-bold font-display text-white">500+</div>
+                            <div class="text-blue-200 text-[11px] mt-0.5">Peserta Aktif</div>
                         </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 text-center">
-                            <div class="text-2xl font-bold font-display text-white">100%</div>
-                            <div class="text-blue-200 text-xs mt-1">Digital</div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/15 text-center">
+                            <div class="text-xl xl:text-2xl font-bold font-display text-white">100%</div>
+                            <div class="text-blue-200 text-[11px] mt-0.5">Digital</div>
                         </div>
                     </div>
                 </div>
 
                 {{-- Footer kiri --}}
-                <div class="text-blue-200/70 text-sm">
+                <div class="relative z-10 text-blue-200/70 text-xs">
                     © {{ date('Y') }} Del Olympic — Institut Teknologi Del
                 </div>
             </div>
         </div>
 
         {{-- ========== SISI KANAN: Form Login ========== --}}
-        <div class="w-full lg:w-1/2 xl:w-2/5 flex items-center justify-center min-h-screen bg-slate-50 px-4 py-10 sm:px-8">
+        <div class="w-full lg:w-1/2 xl:w-3/5 flex items-center justify-center min-h-screen bg-slate-50 px-4 py-12 sm:px-8">
             <div class="w-full max-w-md animate-fade-in-up">
+
+                {{-- Tombol Kembali di atas card --}}
+                <div class="mb-4 flex items-center">
+                    <a href="{{ url('/') }}"
+                       class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-blue-600 transition group">
+                        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span>Kembali ke Beranda</span>
+                    </a>
+                </div>
 
                 {{-- Logo mobile (hanya tampil di bawah lg) --}}
                 <div class="flex justify-center mb-8 lg:hidden">
