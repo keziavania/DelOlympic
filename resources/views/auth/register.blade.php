@@ -262,51 +262,25 @@
                 {{-- Overlay gelap --}}
                 <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/90 via-[#1660eb]/60 to-[#0b1c3d]/80 pointer-events-none"></div>
 
-                {{-- Baris atas: Logo & Tombol Ganti Peran --}}
-                <div class="relative z-10 flex items-center justify-between">
+                {{-- Baris atas: Logo --}}
+                <div class="relative z-10 flex items-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
                         <img src="{{ asset('images/logo.png') }}"
                              alt="Logo Del Olympic"
                              class="h-8 w-auto object-contain">
                     </a>
-
-                    <button type="button"
-                            onclick="showRoleSelection()"
-                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-semibold border border-white/20 transition cursor-pointer">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                        </svg>
-                        <span>Ganti Peran</span>
-                    </button>
                 </div>
 
-                {{-- Teks tengah (Proporsional & Selalu Tampak) --}}
+                {{-- Teks tengah (Hanya Judul dan Deskripsi Sesuai Permintaan) --}}
                 <div class="relative z-10 space-y-4 my-auto py-6">
-                    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full px-3.5 py-1 text-xs font-medium">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        Pendaftaran Akun Del Olympic
-                    </div>
-
-                    <h1 class="text-2xl xl:text-3xl font-bold font-display leading-tight">
+                    <h1 class="text-3xl xl:text-4xl font-bold font-display leading-tight">
                         Mulai Langkah<br>
                         Juaramu di <span class="text-blue-300">Del Olympic</span>
                     </h1>
 
-                    <p class="text-blue-100/90 text-sm leading-relaxed max-w-sm">
+                    <p class="text-blue-100/90 text-base leading-relaxed max-w-sm">
                         Bergabunglah dengan ribuan talenta muda di kompetisi olimpiade akademik bergengsi Institut Teknologi Del.
                     </p>
-
-                    {{-- Panduan Role Singkat --}}
-                    <div class="space-y-2.5 pt-2 max-w-sm">
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3.5 border border-white/15">
-                            <div class="text-blue-300 text-[11px] font-semibold uppercase tracking-wider">Peran Peserta</div>
-                            <div class="text-white text-xs font-medium mt-0.5">Daftar lomba, submit karya, akses tes CBT, dan unduh sertifikat resmi.</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3.5 border border-white/15">
-                            <div class="text-blue-300 text-[11px] font-semibold uppercase tracking-wider">Peran Penyelenggara</div>
-                            <div class="text-white text-xs font-medium mt-0.5">Kelola ajang kompetisi, verifikasi berkas, dan diverifikasi langsung oleh Admin.</div>
-                        </div>
-                    </div>
                 </div>
 
                 {{-- Footer kiri --}}
@@ -321,7 +295,7 @@
             <div class="w-full max-w-xl animate-fade-in-up pt-10 sm:pt-4">
 
                 {{-- Tombol ganti peran di mobile/header card --}}
-                <div class="mb-4 flex items-center justify-between">
+                <div class="mb-4 flex items-center">
                     <button type="button"
                             onclick="showRoleSelection()"
                             class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 hover:text-blue-600 transition group cursor-pointer">
@@ -330,9 +304,6 @@
                         </svg>
                         <span>Ganti Pilihan Peran</span>
                     </button>
-                    <span id="role-badge-top" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">
-                        {{ $activeRole === 'penyelenggara' ? 'Mode: Penyelenggara' : 'Mode: Peserta' }}
-                    </span>
                 </div>
 
                 {{-- Card Pendaftaran --}}
@@ -345,27 +316,6 @@
                         </h2>
                         <p id="form-subtitle" class="text-slate-500 text-sm mt-1.5">
                             {{ $activeRole === 'penyelenggara' ? 'Lengkapi data lembaga & penanggung jawab untuk verifikasi admin.' : 'Lengkapi biodata lengkap siswa untuk keperluan kartu peserta & sertifikat olimpiade.' }}
-                        </p>
-                    </div>
-
-                    {{-- Informasi Role Yang Dipilih --}}
-                    <div id="role-info-peserta" class="{{ $activeRole === 'peserta' ? 'block' : 'hidden' }} mb-6 p-4 bg-blue-50 border border-blue-100 rounded-2xl text-xs text-blue-800">
-                        <div class="flex items-center gap-2 font-semibold">
-                            <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                            <span>Pendaftaran Akun Peserta Olimpiade</span>
-                        </div>
-                        <p class="mt-1 text-blue-700/80 leading-relaxed">
-                            Pastikan data nama, NISN, dan asal sekolah sesuai dokumen resmi untuk pencetakan sertifikat dan piagam lomba.
-                        </p>
-                    </div>
-
-                    <div id="role-info-penyelenggara" class="{{ $activeRole === 'penyelenggara' ? 'block' : 'hidden' }} mb-6 p-4 bg-indigo-50 border border-indigo-100 rounded-2xl text-xs text-indigo-800">
-                        <div class="flex items-center gap-2 font-semibold">
-                            <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
-                            <span>Pendaftaran Penyelenggara (Verifikasi Admin)</span>
-                        </div>
-                        <p class="mt-1 text-indigo-700/80 leading-relaxed">
-                            Data instansi yang Anda isi akan diperiksa secara resmi oleh tim Admin Del Olympic sebelum izin publikasi lomba diaktifkan.
                         </p>
                     </div>
 
@@ -866,27 +816,17 @@
         function setRoleForm(role) {
             document.getElementById('input-role').value = role;
 
-            const formTitle         = document.getElementById('form-title');
-            const formSubtitle      = document.getElementById('form-subtitle');
-            const roleBadge         = document.getElementById('role-badge-top');
-            const infoPeserta       = document.getElementById('role-info-peserta');
-            const infoPenyelenggara = document.getElementById('role-info-penyelenggara');
-            const fieldsPeserta     = document.getElementById('fields-peserta');
+            const formTitle           = document.getElementById('form-title');
+            const formSubtitle        = document.getElementById('form-subtitle');
+            const fieldsPeserta       = document.getElementById('fields-peserta');
             const fieldsPenyelenggara = document.getElementById('fields-penyelenggara');
-            const labelEmail        = document.getElementById('label-email');
-            const namePesertaInput  = document.getElementById('name_peserta');
-            const nameOrgInput      = document.getElementById('name_penyelenggara');
+            const labelEmail          = document.getElementById('label-email');
+            const namePesertaInput    = document.getElementById('name_peserta');
+            const nameOrgInput        = document.getElementById('name_penyelenggara');
 
             if (role === 'penyelenggara') {
                 if (formTitle) formTitle.textContent = 'Daftar sebagai Penyelenggara';
                 if (formSubtitle) formSubtitle.textContent = 'Lengkapi data lembaga & penanggung jawab untuk verifikasi admin.';
-                if (roleBadge) {
-                    roleBadge.textContent = 'Mode: Penyelenggara';
-                    roleBadge.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700';
-                }
-
-                infoPenyelenggara.classList.remove('hidden');
-                infoPeserta.classList.add('hidden');
 
                 fieldsPenyelenggara.classList.remove('hidden');
                 fieldsPeserta.classList.add('hidden');
@@ -901,13 +841,6 @@
             } else {
                 if (formTitle) formTitle.textContent = 'Daftar sebagai Peserta';
                 if (formSubtitle) formSubtitle.textContent = 'Lengkapi biodata lengkap siswa untuk keperluan kartu peserta & sertifikat olimpiade.';
-                if (roleBadge) {
-                    roleBadge.textContent = 'Mode: Peserta';
-                    roleBadge.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700';
-                }
-
-                infoPeserta.classList.remove('hidden');
-                infoPenyelenggara.classList.add('hidden');
 
                 fieldsPeserta.classList.remove('hidden');
                 fieldsPenyelenggara.classList.add('hidden');
