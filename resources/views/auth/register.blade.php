@@ -262,14 +262,8 @@
                 {{-- Overlay gelap --}}
                 <div class="absolute inset-0 bg-gradient-to-br from-[#0b1c3d]/90 via-[#1660eb]/60 to-[#0b1c3d]/80 pointer-events-none"></div>
 
-                {{-- Baris atas: Logo --}}
-                <div class="relative z-10 flex items-center">
-                    <a href="{{ url('/') }}" class="inline-flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-sm border border-white/60 group hover:bg-white transition-all transform hover:scale-105">
-                        <img src="{{ asset('images/logo.png') }}"
-                             alt="Logo Del Olympic"
-                             class="h-8 w-auto object-contain">
-                    </a>
-                </div>
+                {{-- Spacer atas --}}
+                <div></div>
 
                 {{-- Teks tengah (Hanya Judul dan Deskripsi Sesuai Permintaan) --}}
                 <div class="relative z-10 space-y-4 my-auto py-6">
