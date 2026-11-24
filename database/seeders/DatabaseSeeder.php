@@ -41,15 +41,37 @@ class DatabaseSeeder extends Seeder
         );
 
         // ========= AKUN PESERTA =========
-        User::firstOrCreate(
+        $demoPeserta = User::firstOrCreate(
             ['email' => 'peserta@delolympic.id'],
             [
-                'name'        => 'Mahasiswa Del',
-                'password'    => Hash::make('password123'),
-                'role'        => 'peserta',
-                'status_akun' => 'aktif',
+                'name'            => 'Budi Santoso',
+                'password'        => Hash::make('password123'),
+                'role'            => 'peserta',
+                'status_akun'     => 'aktif',
+                'phone'           => '081234567890',
+                'nisn'            => '0071234567',
+                'gender'          => 'Laki-laki',
+                'school_name'     => 'SMA N 1 Laguboti',
+                'education_level' => 'SMA',
+                'grade'           => 'Kelas XI',
+                'city'            => 'Kabupaten Toba',
+                'province'        => 'Sumatera Utara',
             ]
         );
+
+        // Lengkapi biodata akun demo peserta jika sebelumnya kosong
+        if (empty($demoPeserta->school_name)) {
+            $demoPeserta->update([
+                'phone'           => $demoPeserta->phone ?: '081234567890',
+                'nisn'            => $demoPeserta->nisn ?: '0071234567',
+                'gender'          => $demoPeserta->gender ?: 'Laki-laki',
+                'school_name'     => 'SMA N 1 Laguboti',
+                'education_level' => 'SMA',
+                'grade'           => 'Kelas XI',
+                'city'            => 'Kabupaten Toba',
+                'province'        => 'Sumatera Utara',
+            ]);
+        }
 
         // ========= AKUN PESERTA (status menunggu, untuk testing) =========
         User::firstOrCreate(
@@ -61,6 +83,8 @@ class DatabaseSeeder extends Seeder
                 'status_akun' => 'menunggu',
             ]
         );
+
+        $this->call(CompetitionSeeder::class);
 
         $this->command->info('✅ Seeder berhasil! Akun demo telah dibuat.');
         $this->command->table(

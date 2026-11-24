@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PesertaDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,21 @@ Route::middleware(['auth', 'role:penyelenggara'])->prefix('penyelenggara')->name
 
 // Dashboard Peserta
 Route::middleware(['auth', 'role:peserta'])->prefix('peserta')->name('peserta.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'pesertaDashboard'])->name('dashboard');
-    // Route-route peserta lainnya bisa ditambahkan di sini
+    Route::get('/dashboard', [PesertaDashboardController::class, 'index'])->name('dashboard');
+
+    // Jelajah & Detail Lomba Menyeluruh
+    Route::get('/lomba', [PesertaDashboardController::class, 'explore'])->name('competitions.index');
+    Route::get('/lomba/{competition}', [PesertaDashboardController::class, 'showCompetition'])->name('competitions.show');
+    Route::post('/lomba/{competition}/daftar', [PesertaDashboardController::class, 'registerCompetition'])->name('competitions.register');
+
+    // Lomba Saya, Unggah Berkas, & Kartu Peserta
+    Route::get('/lomba-saya', [PesertaDashboardController::class, 'myCompetitions'])->name('registrations.index');
+    Route::post('/lomba-saya/{registration}/berkas', [PesertaDashboardController::class, 'uploadDocuments'])->name('registrations.upload');
+    Route::get('/lomba-saya/{registration}/kartu', [PesertaDashboardController::class, 'participantCard'])->name('registrations.card');
+
+    // Jadwal, Pengumuman, Sertifikat, & Profil
+    Route::get('/jadwal', [PesertaDashboardController::class, 'schedule'])->name('schedule');
+    Route::get('/sertifikat', [PesertaDashboardController::class, 'certificates'])->name('certificates');
+    Route::get('/profil', [PesertaDashboardController::class, 'profile'])->name('profile');
+    Route::put('/profil', [PesertaDashboardController::class, 'updateProfile'])->name('profile.update');
 });

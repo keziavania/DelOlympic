@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -64,5 +65,28 @@ class User extends Authenticatable
     public function isPeserta(): bool
     {
         return $this->role === 'peserta';
+    }
+
+    /**
+     * Daftar registrasi lomba yang diikuti peserta.
+     *
+     * @return HasMany<CompetitionRegistration, $this>
+     */
+    public function competitionRegistrations(): HasMany
+    {
+        return $this->hasMany(CompetitionRegistration::class);
+    }
+
+    /**
+     * Cek apakah biodata inti peserta sudah lengkap untuk kartu peserta & sertifikat.
+     */
+    public function isParticipantProfileComplete(): bool
+    {
+        return ! empty($this->name)
+            && ! empty($this->phone)
+            && ! empty($this->nisn)
+            && ! empty($this->school_name)
+            && ! empty($this->education_level)
+            && ! empty($this->grade);
     }
 }
