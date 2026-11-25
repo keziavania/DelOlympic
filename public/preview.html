@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,7 +69,7 @@
 
     <!-- HERO SECTION WITH CAMPUS BACKGROUND -->
     <section class="relative min-h-[580px] sm:min-h-[640px] md:min-h-[700px] flex flex-col justify-between bg-cover bg-center bg-no-repeat overflow-hidden" 
-             style="background-image: url('{{ asset('images/del-campus.jpg') }}');">
+             style="background-image: url('images/del-campus.jpg');">
         
         <!-- Overlay halus agar foto tetap cerah dan teks sangat jelas -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/15 to-black/45 pointer-events-none"></div>
@@ -81,7 +81,7 @@
                     <!-- LOGO RESMI (GAMBAR KEDUA) -->
                     <a href="#" class="flex items-center group">
                         <img 
-                            src="{{ asset('images/logo.png') }}" 
+                            src="images/logo.png" 
                             alt="Logo Del Olympic" 
                             class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
                         >
@@ -104,7 +104,7 @@
                     <!-- TOMBOL AKSI: DAFTAR & MASUK -->
                     <div class="flex items-center space-x-2 sm:space-x-3">
                         <!-- Tombol Daftar Akun -->
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-1.5 group">
+                        <a href="/daftar" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-1.5 group">
                             <!-- Icon User Plus / Register -->
                             <svg class="w-4 h-4 text-blue-100 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
@@ -113,7 +113,7 @@
                         </a>
 
                         <!-- Tombol Masuk / Login -->
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-1.5 group">
+                        <a href="/masuk" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-1.5 group">
                             <!-- Icon Log In -->
                             <svg class="w-4 h-4 text-slate-200 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
@@ -290,7 +290,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Matematika, Rumus & Atom Sains - Tanpa Orang) -->
                                 <img 
-                                    src="{{ asset('images/dmsc-theme.svg') }}" 
+                                    src="images/dmsc-theme.svg" 
                                     alt="DMSC - Matematika & Sains" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -404,7 +404,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Medali Emas Olimpiade, Daun Zaitun, Tabung Reaksi - Tanpa Orang / Tanpa Bunga) -->
                                 <img 
-                                    src="{{ asset('images/posi-theme.svg') }}" 
+                                    src="images/posi-theme.svg" 
                                     alt="POSI - Olimpiade Sains Nasional" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -518,7 +518,7 @@
                             <div class="relative h-48 sm:h-52 bg-slate-900 overflow-hidden">
                                 <!-- Thematic Vector Graphic (Code Editor Terminal, Circuit Traces & Binary - Tanpa Orang) -->
                                 <img 
-                                    src="{{ asset('images/deltech-theme.svg') }}" 
+                                    src="images/deltech-theme.svg" 
                                     alt="Del Tech - Teknologi & IT" 
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 >
@@ -663,7 +663,7 @@
                 <div class="md:col-span-2">
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="bg-white p-1.5 rounded-xl inline-block shadow-sm">
-                            <img src="{{ asset('images/logo.png') }}" alt="Del Olympic" class="h-8 w-auto">
+                            <img src="images/logo.png" alt="Del Olympic" class="h-8 w-auto">
                         </div>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
@@ -734,7 +734,7 @@
         <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
             <button onclick="closeRegisterModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-full p-1.5 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            </div>
+            </button>
 
             <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>

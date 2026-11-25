@@ -101,26 +101,60 @@
                         </a>
                     </nav>
 
-                    <!-- TOMBOL AKSI: DAFTAR & MASUK -->
-                    <div class="flex items-center space-x-2 sm:space-x-3">
-                        <!-- Tombol Daftar Akun -->
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-1.5 group">
-                            <!-- Icon User Plus / Register -->
-                            <svg class="w-4 h-4 text-blue-100 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-                            </svg>
-                            <span>Daftar</span>
-                        </a>
+                    <!-- TOMBOL AKSI: DAFTAR & MASUK ATAU DASHBOARD & LOGOUT -->
+                    @auth
+                        @php
+                            $dashboardUrl = match (Auth::user()->role) {
+                                'admin'         => route('admin.dashboard'),
+                                'penyelenggara' => route('penyelenggara.dashboard'),
+                                'peserta'       => route('peserta.dashboard'),
+                                default         => route('home'),
+                            };
+                        @endphp
+                        <div class="flex items-center space-x-2 sm:space-x-3">
+                            <!-- Tombol Masuk ke Dashboard -->
+                            <a href="{{ $dashboardUrl }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-2 group">
+                                <span class="w-6 h-6 rounded-full bg-white/20 text-white flex items-center justify-center text-xs font-bold uppercase">
+                                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                                </span>
+                                <span>Ke Dashboard</span>
+                                <svg class="w-4 h-4 text-blue-100 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </a>
 
-                        <!-- Tombol Masuk / Login -->
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-1.5 group">
-                            <!-- Icon Log In -->
-                            <svg class="w-4 h-4 text-slate-200 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-                            </svg>
-                            <span>Masuk</span>
-                        </a>
-                    </div>
+                            <!-- Tombol Keluar (Logout) -->
+                            <form method="POST" action="{{ route('logout') }}" class="inline-block m-0">
+                                @csrf
+                                <button type="submit" class="inline-flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 font-medium text-xs sm:text-sm px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-slate-200 hover:border-red-200 transition-all duration-150 space-x-1.5 group cursor-pointer" title="Keluar dari akun">
+                                    <svg class="w-4 h-4 text-slate-500 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                    </svg>
+                                    <span>Keluar</span>
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="flex items-center space-x-2 sm:space-x-3">
+                            <!-- Tombol Daftar Akun -->
+                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-blue-600/20 transition-all duration-150 space-x-1.5 group">
+                                <!-- Icon User Plus / Register -->
+                                <svg class="w-4 h-4 text-blue-100 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                                </svg>
+                                <span>Daftar</span>
+                            </a>
+
+                            <!-- Tombol Masuk / Login -->
+                            <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-[#0e1726] hover:bg-slate-900 text-white font-medium text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md shadow-slate-900/20 transition-all duration-150 space-x-1.5 group">
+                                <!-- Icon Log In -->
+                                <svg class="w-4 h-4 text-slate-200 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                </svg>
+                                <span>Masuk</span>
+                            </a>
+                        </div>
+                    @endauth
                 </div>
             </header>
         </div>
@@ -749,47 +783,80 @@
                 Pilihan Kompetisi
             </p>
 
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                Untuk mendaftar dan mengikuti kompetisi ini, silakan daftarkan akun baru atau masuk ke akun Anda terlebih dahulu.
-            </p>
+            @auth
+                @php
+                    $dashboardUrl = match (Auth::user()->role) {
+                        'admin'         => route('admin.dashboard'),
+                        'penyelenggara' => route('penyelenggara.dashboard'),
+                        'peserta'       => route('peserta.dashboard'),
+                        default         => route('home'),
+                    };
+                @endphp
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    Anda sedang masuk sebagai <strong class="text-slate-900">{{ Auth::user()->name }}</strong> ({{ ucfirst(Auth::user()->role) }}). Anda dapat langsung melanjutkan pendaftaran melalui dashboard Anda.
+                </p>
 
-            <div class="space-y-3">
-                <!-- Pilihan 1: Daftar Akun Baru -->
-                <a href="{{ route('register', ['role' => 'peserta']) }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-                            </svg>
+                <div class="space-y-3">
+                    <a href="{{ $dashboardUrl }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-sm font-bold">Lanjutkan di Dashboard</div>
+                                <div class="text-[11px] text-blue-100 font-normal">Pilih & ikuti lomba melalui dashboard Anda</div>
+                            </div>
                         </div>
-                        <div class="text-left">
-                            <div class="text-sm font-bold">Daftar Akun Baru</div>
-                            <div class="text-[11px] text-blue-100 font-normal">Buat akun untuk mendaftar lomba</div>
-                        </div>
-                    </div>
-                    <svg class="w-5 h-5 text-blue-200 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                        <svg class="w-5 h-5 text-blue-200 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            @else
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                    Untuk mendaftar dan mengikuti kompetisi ini, silakan daftarkan akun baru atau masuk ke akun Anda terlebih dahulu.
+                </p>
 
-                <!-- Pilihan 2: Masuk ke Akun -->
-                <a href="{{ route('login') }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-sm transition group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-                            </svg>
+                <div class="space-y-3">
+                    <!-- Pilihan 1: Daftar Akun Baru -->
+                    <a href="{{ route('register', ['role' => 'peserta']) }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/25 transition group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-sm font-bold">Daftar Akun Baru</div>
+                                <div class="text-[11px] text-blue-100 font-normal">Buat akun untuk mendaftar lomba</div>
+                            </div>
                         </div>
-                        <div class="text-left">
-                            <div class="text-sm font-bold">Masuk ke Akun</div>
-                            <div class="text-[11px] text-slate-400 font-normal">Sudah memiliki akun terdaftar</div>
+                        <svg class="w-5 h-5 text-blue-200 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+
+                    <!-- Pilihan 2: Masuk ke Akun -->
+                    <a href="{{ route('login') }}" class="w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm shadow-sm transition group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-sm font-bold">Masuk ke Akun</div>
+                                <div class="text-[11px] text-slate-400 font-normal">Sudah memiliki akun terdaftar</div>
+                            </div>
                         </div>
-                    </div>
-                    <svg class="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
+                        <svg class="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            @endauth
 
             <div class="mt-5 text-center">
                 <button onclick="closeRegisterModal()" class="text-xs text-slate-400 hover:text-slate-600 transition font-medium">
