@@ -245,57 +245,7 @@
                 @endif
             </section>
 
-            {{-- Rekomendasi Lomba (Sesuai Jenjang) --}}
-            <section class="bg-white rounded-2xl border border-slate-200/80 shadow-2xs p-5 sm:p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-base sm:text-lg font-bold font-display text-slate-900">
-                            Rekomendasi Lomba
-                            @if ($user->education_level)
-                                <span class="text-blue-600">(Jenjang {{ $user->education_level }})</span>
-                            @endif
-                        </h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Lihat detail menyeluruh silabus, jadwal, dan syarat sebelum mendaftar.</p>
-                    </div>
-                    <a href="{{ route('peserta.competitions.index') }}" class="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline">
-                        Semua Lomba →
-                    </a>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    @foreach ($recommendedCompetitions as $comp)
-                        <div class="rounded-2xl border border-slate-200/90 p-4 hover:border-blue-300 hover:shadow-sm transition flex flex-col justify-between bg-slate-50/40">
-                            <div>
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-700">
-                                        {{ $comp->statusLabel() }}
-                                    </span>
-                                    <span class="text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">
-                                        {{ $comp->isTeamCompetition() ? 'Tim 1–'.$comp->max_team_members.' Orang' : 'Individu' }}
-                                    </span>
-                                </div>
-                                <h3 class="text-sm font-bold font-display text-slate-900">{{ $comp->short_title }}</h3>
-                                <p class="text-xs text-slate-500 mt-0.5 line-clamp-2">{{ $comp->title }}</p>
-                                <div class="mt-3 flex items-center justify-between text-xs pt-2.5 border-t border-slate-200/70">
-                                    <span class="font-bold text-blue-700">{{ $comp->formattedFee() }}</span>
-                                    <span class="text-slate-500">Batas {{ $comp->registration_end?->translatedFormat('d M Y') }}</span>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-2 mt-4">
-                                <a href="{{ route('peserta.competitions.show', $comp) }}"
-                                   class="text-center py-2 px-3 rounded-xl border border-slate-200 bg-white hover:border-blue-400 hover:text-blue-700 text-slate-700 text-xs font-semibold transition">
-                                    Detail Lengkap
-                                </a>
-                                <a href="{{ route('peserta.competitions.show', $comp) }}#form-daftar-lomba"
-                                   class="text-center py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition">
-                                    Daftar
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
         </div>
 
         {{-- Right Column (4 cols) --}}
